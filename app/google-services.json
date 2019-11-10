@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "128706109279",
+    "firebase_url": "https://moving-company-management.firebaseio.com",
+    "project_id": "moving-company-management",
+    "storage_bucket": "moving-company-management.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:128706109279:android:cf06376673ee141b0160ea",
+        "android_client_info": {
+          "package_name": "com.example.movingcompanymanagement"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "128706109279-qhnod03n3fqimfbhtj5i1b1aingu6f35.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.movingcompanymanagement",
+            "certificate_hash": "30a08d7ca481c467d4df8c57765b9c0d2a253a86"
+          }
+        },
+        {
+          "client_id": "128706109279-1i9ljfdf684r1b07fngm13spicsn4cch.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdB2in50xcEruvRXkmq56QspKoKyUpa_I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "128706109279-1i9ljfdf684r1b07fngm13spicsn4cch.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
