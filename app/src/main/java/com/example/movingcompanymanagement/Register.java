@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 public class Register extends AppCompatActivity {
@@ -23,6 +25,8 @@ MaterialEditText register_firstName,register_lastName,register_email,register_pa
 Button register_btn;
 ProgressBar register_progressBar;
 FirebaseAuth firebaseAuth;
+DatabaseReference databaseReference;
+User user;
 
 
     @Override
@@ -41,6 +45,8 @@ FirebaseAuth firebaseAuth;
 
         firebaseAuth = FirebaseAuth.getInstance();
 
+        user = new User();
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("User");
         //If user already logged in
         if(firebaseAuth.getCurrentUser() != null){
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
@@ -52,9 +58,9 @@ FirebaseAuth firebaseAuth;
             public void onClick(View v) {
                 String email = register_email.getText().toString().trim();
                 String password = register_password.getText().toString().trim();
-//                String firstName = register_firstName.getText().toString().trim();
-//                String lastName = register_lastName.getText().toString().trim();
-//                String phoneNumber = register_phoneNumber.getText().toString().trim();
+                String firstName = register_firstName.getText().toString().trim();
+                String lastName = register_lastName.getText().toString().trim();
+                int phoneNumber = Integer.parseInt(register_phoneNumber.getText().toString().trim());
 
                 if(TextUtils.isEmpty(email)){
                     register_email.setError("Email is Required");
@@ -68,20 +74,28 @@ FirebaseAuth firebaseAuth;
                     register_password.setError("Password must be >= 6 Characters");
                     return;
                 }
-//                if(TextUtils.isEmpty(firstName)){
-//                    register_firstName.setError("Please Fill In All Required Fields");
-//                    return;
-//                }
-//                if(TextUtils.isEmpty(lastName)){
-//                    register_lastName.setError("Please Fill In All Required Fields");
-//                    return;
-//                }
-//                if(TextUtils.isEmpty(phoneNumber)){
-//                    register_phoneNumber.setError("Please Fill In All Required Fields");
-//                    return;
-//                }
+                if(TextUtils.isEmpty(firstName)){
+                    register_firstName.setError("Please Fill firstName Fields");
+                    return;
+                }
+                if(TextUtils.isEmpty(lastName)){
+                    register_lastName.setError("Please Fill lastName Fields");
+                    return;
+                }
+                if(TextUtils.isEmpty(Integer.toString(phoneNumber))){
+                    register_phoneNumber.setError("Please Fill phoneNumber Fields");
+                    return;
+                }
 
                 register_progressBar.setVisibility(View.VISIBLE);
+
+                //Insert data into Realtime Database (firebase)
+                user.setFirstName(firstName);
+                user.setLastName(lastName);
+                user.setEmail(email);
+                user.setPassword(password);
+                user.setPhoneNumber(phoneNumber);
+                databaseReference.push().setValue(user);
 
                 //Register in Firebase
                 firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
