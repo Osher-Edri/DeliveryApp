@@ -5,4 +5,8 @@
     <string name="create_new_account">Create New Account</string>
     <string name="first_name">First Name</string>
     <string name="name">Name</string>
+    <string name="logout">Logout</string>
+    <string name="permission">Permission</string>
+    <string name="manager">Manager</string>
+    <string name="driver">Driver</string>
 </resources>

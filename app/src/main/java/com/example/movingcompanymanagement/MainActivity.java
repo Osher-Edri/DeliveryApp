@@ -17,6 +17,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void driver(View view){
+        startActivity(new Intent(getApplicationContext(), Driver.class));
+        //finish();
+    }
+    public void manager(View view){
+        startActivity(new Intent(getApplicationContext(), AddWorker.class));
+        //finish();
+    }
     public void logout(View view){
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(getApplicationContext(),Login.class));

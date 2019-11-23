@@ -1,44 +1,48 @@
 package com.example.movingcompanymanagement;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.Spinner;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
-public class Register extends AppCompatActivity {
-MaterialEditText register_firstName,register_lastName,register_email,register_password,register_phoneNumber;
-Button register_btn;
-ProgressBar register_progressBar;
-FirebaseAuth firebaseAuth;
-DatabaseReference databaseReference;
-User user;
-
-
+public class AddWorker extends AppCompatActivity {
+    MaterialEditText register_firstName,register_lastName,register_email,register_password,register_phoneNumber;
+    ProgressBar register_progressBar;
+    Spinner register_permission;
+    Button register_btn;
+    FirebaseAuth firebaseAuth;
+    DatabaseReference databaseReference;
+    User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_add_worker);
+        register_firstName =  findViewById(R.id.register_firstName);
+        register_lastName = findViewById(R.id.register_lastName);
+        register_email = findViewById(R.id.register_email);
+        register_password = findViewById(R.id.register_password);
+        register_phoneNumber = findViewById(R.id.register_phoneNumber);
 
-        register_firstName = (MaterialEditText) findViewById(R.id.register_firstName);
-        register_lastName = (MaterialEditText) findViewById(R.id.register_lastName);
-        register_email = (MaterialEditText) findViewById(R.id.register_email);
-        register_password = (MaterialEditText) findViewById(R.id.register_password);
-        register_phoneNumber = (MaterialEditText) findViewById(R.id.register_phoneNumber);
+        //define dropdown menu to select worker permission
+        register_permission = findViewById(R.id.register_permission);
+        String[] items = new String[]{"Manager", "Driver"};
+        //create an adapter to describe how the items are displayed, adapters are used in several places in android.
+        //There are multiple variations of this, but this is the basic variant.
+        //create an adapter to describe how the items are displayed, adapters are used in several places in android.
+        //There are multiple variations of this, but this is the basic variant.
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        register_permission.setAdapter(adapter);
+
         register_btn = findViewById(R.id.register_btn);
         register_progressBar = findViewById(R.id.register_progressBar);
 
@@ -46,11 +50,6 @@ User user;
 
         user = new User();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("User");
-        //If user already logged in
-        if(firebaseAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(),MainActivity.class));
-            finish();
-        }
 
         register_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,35 +86,9 @@ User user;
                 }
 
                 register_progressBar.setVisibility(View.VISIBLE);
-
-                //Insert data into Realtime Database (firebase)
-                user.setFirstName(firstName);
-                user.setLastName(lastName);
-                user.setEmail(email);
-                user.setPassword(password);
-                user.setPhoneNumber(phoneNumber);
-                databaseReference.push().setValue(user);
-
-                //Register in Firebase
-                firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
-                            Toast.makeText(Register.this, "User Created.", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                        }
-                        else{
-                            Toast.makeText(Register.this, "Error !" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            register_progressBar.setVisibility(View.GONE);
-                        }
-                    }
-                });
-
-
             }
         });
-
-
-
     }
+
+
 }
