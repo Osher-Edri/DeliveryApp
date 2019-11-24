@@ -27,14 +27,14 @@ public class AddWorker extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_worker);
-        register_firstName =  findViewById(R.id.register_firstName);
-        register_lastName = findViewById(R.id.register_lastName);
-        register_email = findViewById(R.id.register_email);
-        register_password = findViewById(R.id.register_password);
-        register_phoneNumber = findViewById(R.id.register_phoneNumber);
+        register_firstName =  findViewById(R.id.addWorker_firstName);
+        register_lastName = findViewById(R.id.addWorker_lastName);
+        register_email = findViewById(R.id.addWorker_email);
+        register_password = findViewById(R.id.addWorker_password);
+        register_phoneNumber = findViewById(R.id.addWorker_phoneNumber);
 
         //define dropdown menu to select worker permission
-        register_permission = findViewById(R.id.register_permission);
+        register_permission = findViewById(R.id.addWorker_permission);
         String[] items = new String[]{"Manager", "Driver"};
         //create an adapter to describe how the items are displayed, adapters are used in several places in android.
         //There are multiple variations of this, but this is the basic variant.
@@ -43,8 +43,8 @@ public class AddWorker extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         register_permission.setAdapter(adapter);
 
-        register_btn = findViewById(R.id.register_btn);
-        register_progressBar = findViewById(R.id.register_progressBar);
+        register_btn = findViewById(R.id.addWorker_btn);
+        register_progressBar = findViewById(R.id.addWorker_progressBar);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -58,7 +58,14 @@ public class AddWorker extends AppCompatActivity {
                 String password = register_password.getText().toString().trim();
                 String firstName = register_firstName.getText().toString().trim();
                 String lastName = register_lastName.getText().toString().trim();
-                int phoneNumber = Integer.parseInt(register_phoneNumber.getText().toString().trim());
+                int phoneNumber;
+                try{
+                    phoneNumber = Integer.parseInt(register_phoneNumber.getText().toString().trim());
+                }
+                catch (NumberFormatException e){ //happens when phone number field is left empty
+                    register_phoneNumber.setError("Please Fill phoneNumber Fields");
+                    return;
+                }
 
                 if(TextUtils.isEmpty(email)){
                     register_email.setError("Email is Required");
@@ -80,10 +87,10 @@ public class AddWorker extends AppCompatActivity {
                     register_lastName.setError("Please Fill lastName Fields");
                     return;
                 }
-                if(TextUtils.isEmpty(Integer.toString(phoneNumber))){
-                    register_phoneNumber.setError("Please Fill phoneNumber Fields");
-                    return;
-                }
+//                if(TextUtils.isEmpty(Integer.toString(phoneNumber))){
+//                    register_phoneNumber.setError("Please Fill phoneNumber Fields");
+//                    return;
+//                }
 
                 register_progressBar.setVisibility(View.VISIBLE);
             }

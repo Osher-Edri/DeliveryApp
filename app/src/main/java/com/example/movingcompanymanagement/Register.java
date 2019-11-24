@@ -59,7 +59,15 @@ User user;
                 String password = register_password.getText().toString().trim();
                 String firstName = register_firstName.getText().toString().trim();
                 String lastName = register_lastName.getText().toString().trim();
-                int phoneNumber = Integer.parseInt(register_phoneNumber.getText().toString().trim());
+                int phoneNumber;
+                try{
+                    phoneNumber = Integer.parseInt(register_phoneNumber.getText().toString().trim());
+                }
+                catch (NumberFormatException e){ //happens when phone number field is left empty
+                    register_phoneNumber.setError("Please Fill phoneNumber Fields");
+                    return;
+                }
+
 
                 if(TextUtils.isEmpty(email)){
                     register_email.setError("Email is Required");
@@ -81,10 +89,10 @@ User user;
                     register_lastName.setError("Please Fill lastName Fields");
                     return;
                 }
-                if(TextUtils.isEmpty(Integer.toString(phoneNumber))){
-                    register_phoneNumber.setError("Please Fill phoneNumber Fields");
-                    return;
-                }
+//                if(TextUtils.isEmpty(Integer.toString(phoneNumber))){
+//                    register_phoneNumber.setError("Please Fill phoneNumber Fields");
+//                    return;
+//                }
 
                 register_progressBar.setVisibility(View.VISIBLE);
 
