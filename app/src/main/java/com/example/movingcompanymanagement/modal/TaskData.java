@@ -1,8 +1,7 @@
 package com.example.movingcompanymanagement.modal;
 
-import java.util.Date;
 
-public class taskData {
+public class TaskData {
 
     private String task_id;
     private String order_date;
@@ -17,10 +16,10 @@ public class taskData {
     private String driver_note;
 
 
-    public taskData() {
+    public TaskData() {
     }
 
-    public taskData(String task_id, String order_date, String task_date, String address, String region,
+    public TaskData(String task_id, String order_date, String task_date, String address, String region,
                     String contact_name, String contact_phone, String driver, String status,
                     String order_note, String driver_note) {
 
@@ -128,7 +127,7 @@ public class taskData {
 
     @Override
     public String toString() {
-        return "taskData{" +
+        return "TaskData{" +
                 "task_id='" + task_id + '\'' +
                 ", order_date=" + order_date +
                 ", task_date=" + task_date +

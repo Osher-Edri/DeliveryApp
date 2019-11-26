@@ -2,29 +2,25 @@ package com.example.movingcompanymanagement.sample;
 
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movingcompanymanagement.R;
-import com.example.movingcompanymanagement.modal.taskData;
+import com.example.movingcompanymanagement.modal.TaskData;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 public class taskDataAdapter extends RecyclerView.Adapter<taskDataAdapter.ViewHolder> {
 
-    private List<taskData> mItems;
+    private List<TaskData> mItems;
     private Context mContext;
 
-    public taskDataAdapter(Context context, List<taskData> items) {
+    public taskDataAdapter(Context context, List<TaskData> items) {
         this.mContext = context;
         this.mItems = items;
     }
@@ -39,7 +35,7 @@ public class taskDataAdapter extends RecyclerView.Adapter<taskDataAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(taskDataAdapter.ViewHolder holder, int position) {
-        taskData item = mItems.get(position);
+        TaskData item = mItems.get(position);
 
             holder.address.setText(item.getAddress());
             holder.order_date.setText(item.getOrder_date());

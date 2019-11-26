@@ -11,15 +11,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.movingcompanymanagement.R;
-import com.example.movingcompanymanagement.modal.taskData;
-
-import org.w3c.dom.Text;
+import com.example.movingcompanymanagement.modal.TaskData;
 
 import java.util.List;
 
 public class taskDataAdapterListView extends ArrayAdapter {
 
-    List<taskData> m_task_data;
+    List<TaskData> m_task_data;
     LayoutInflater mInflater;
 
     public taskDataAdapterListView(@NonNull Context context, @NonNull List objects) {
@@ -39,7 +37,7 @@ public class taskDataAdapterListView extends ArrayAdapter {
         TextView address =(TextView) convertView.findViewById(R.id.address);
         TextView order_date =(TextView) convertView.findViewById(R.id.order_date);
 
-        taskData  task = m_task_data.get(position);
+        TaskData task = m_task_data.get(position);
         address.setText(task.getAddress());
         order_date.setText(task.getOrder_date());
 

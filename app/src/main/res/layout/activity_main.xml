@@ -58,4 +58,12 @@
         android:onClick="workersTable"
         android:text="@string/workers_table" />
 
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:onClick="newTask"
+        android:text="@string/newtask" />
+
 </LinearLayout>

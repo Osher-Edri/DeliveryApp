@@ -15,4 +15,5 @@
     <string name="hide">Hide</string>
     <string name="task_table">task table</string>
     <string name="workers_table">workers table</string>
+    <string name="newtask">newTask</string>
 </resources>

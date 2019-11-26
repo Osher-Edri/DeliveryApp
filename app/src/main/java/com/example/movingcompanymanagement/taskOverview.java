@@ -4,12 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.widget.ListView;
 
-import com.example.movingcompanymanagement.modal.taskData;
+import com.example.movingcompanymanagement.modal.TaskData;
 import com.example.movingcompanymanagement.sample.SampleDataProvider;
 import com.example.movingcompanymanagement.sample.taskDataAdapter;
-import com.example.movingcompanymanagement.sample.taskDataAdapterListView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,7 +18,7 @@ public class taskOverview extends AppCompatActivity {
 
 //    TextView task_out;
 
-    List<taskData>  tasks_list = SampleDataProvider.tasks_list;
+    List<TaskData>  tasks_list = SampleDataProvider.tasks_list;
     List<String> task_address = new ArrayList<>();
 
     @Override
@@ -28,9 +26,9 @@ public class taskOverview extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_overview);
 
-        Collections.sort(tasks_list, new Comparator<taskData>() {
+        Collections.sort(tasks_list, new Comparator<TaskData>() {
             @Override
-            public int compare(taskData o1, taskData o2) {
+            public int compare(TaskData o1, TaskData o2) {
                 return o1.getAddress().compareTo(o2.getAddress());
             }
         });
