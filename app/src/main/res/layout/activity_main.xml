@@ -31,4 +31,31 @@
         android:layout_weight="1"
         android:onClick="driver"
         android:text="@string/driver" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:onClick="taskOverview"
+        android:text="@string/tasks_overview" />
+
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:onClick="taskTable"
+        android:text="@string/task_table" />
+
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:onClick="workersTable"
+        android:text="@string/workers_table" />
+
 </LinearLayout>

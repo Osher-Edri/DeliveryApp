@@ -25,6 +25,23 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(), AddWorker.class));
         //finish();
     }
+
+    public void taskOverview(View view){
+        // test for load data
+        startActivity(new Intent(getApplicationContext(), taskOverview.class));
+    }
+
+    public void taskTable(View view){
+        startActivity(new Intent(getApplicationContext(), TaskTable.class));
+    }
+
+
+
+    public void workersTable(View view) {
+        startActivity(new Intent(getApplicationContext(), workersTable.class));
+    }
+
+
     public void logout(View view){
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(getApplicationContext(),Login.class));

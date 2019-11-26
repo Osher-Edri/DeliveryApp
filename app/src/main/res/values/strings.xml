@@ -9,4 +9,10 @@
     <string name="permission">Permission</string>
     <string name="manager">Manager</string>
     <string name="driver">Driver</string>
+    <string name="title_activity_task_overview">task_overview</string>
+    <string name="tasks_overview">tasks overview</string>
+    <string name="show">show</string>
+    <string name="hide">Hide</string>
+    <string name="task_table">task table</string>
+    <string name="workers_table">workers table</string>
 </resources>
