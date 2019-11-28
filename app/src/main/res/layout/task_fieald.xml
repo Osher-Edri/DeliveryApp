@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="12dp"
+    android:layout_margin="10dp"
+    android:elevation="19dp">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/view_fullName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:textSize="15dp"
+        android:textColor="@android:color/black"
+        android:text="XXX"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/view_phoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:textSize="15dp"
+        android:textColor="@android:color/black"
+        android:text="XXX"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/view_dateTransport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:textSize="15dp"
+        android:textColor="@android:color/black"
+        android:text="XXX"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/view_destinationAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:textSize="15dp"
+        android:textColor="@android:color/black"
+        android:text="XXX"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/view_originAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:textSize="15dp"
+        android:textColor="@android:color/black"
+        android:text="XXX"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/view_transportDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:textSize="15dp"
+        android:textColor="@android:color/black"
+        android:text="XXX"
+        android:gravity="center"/>
+
+</LinearLayout>
+
+
+</LinearLayout>

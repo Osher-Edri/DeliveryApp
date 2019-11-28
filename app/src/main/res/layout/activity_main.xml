@@ -66,4 +66,12 @@
         android:onClick="newTask"
         android:text="@string/newtask" />
 
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:onClick="showTask"
+        android:text="@string/showtask" />
+
 </LinearLayout>

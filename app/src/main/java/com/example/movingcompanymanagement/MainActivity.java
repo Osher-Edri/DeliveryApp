@@ -50,4 +50,8 @@ public class MainActivity extends AppCompatActivity {
     public void newTask(View view){
         startActivity(new Intent(getApplicationContext(), ActivityTransport.class));
     }
+
+    public void showTask(View view){
+        startActivity(new Intent(getApplicationContext(), TaskDetailsActivity.class));
+    }
 }

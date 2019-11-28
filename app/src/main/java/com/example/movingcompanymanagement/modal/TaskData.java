@@ -6,14 +6,16 @@ public class TaskData {
     private String task_id;
     private String order_date;
     private String task_date;
-    private String address;
+    private String address;//destination address
     private String region;
     private String contact_name;
     private String contact_phone;
     private String driver;
     private String status;
-    private String order_note;
+    private String order_note;//order details
     private String driver_note;
+    private String originAddress;
+
 
 
     public TaskData() {
@@ -140,5 +142,13 @@ public class TaskData {
                 ", order_note='" + order_note + '\'' +
                 ", driver_note='" + driver_note + '\'' +
                 '}';
+    }
+
+    public String getOriginAddress() {
+        return originAddress;
+    }
+
+    public void setOriginAddress(String originAddress) {
+        this.originAddress = originAddress;
     }
 }
