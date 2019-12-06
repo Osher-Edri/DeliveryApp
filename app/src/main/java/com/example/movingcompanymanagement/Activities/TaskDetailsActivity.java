@@ -1,4 +1,4 @@
-package com.example.movingcompanymanagement;
+package com.example.movingcompanymanagement.Activities;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.movingcompanymanagement.R;
 import com.example.movingcompanymanagement.modal.TaskData;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;

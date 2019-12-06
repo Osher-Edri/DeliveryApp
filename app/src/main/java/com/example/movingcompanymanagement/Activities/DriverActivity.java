@@ -1,10 +1,12 @@
-package com.example.movingcompanymanagement;
+package com.example.movingcompanymanagement.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class Driver extends AppCompatActivity {
+import com.example.movingcompanymanagement.R;
+
+public class DriverActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

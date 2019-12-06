@@ -1,4 +1,4 @@
-package com.example.movingcompanymanagement;
+package com.example.movingcompanymanagement.Activities;
 
 import android.os.Bundle;
 import android.view.View;
@@ -6,12 +6,13 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.movingcompanymanagement.R;
 import com.example.movingcompanymanagement.modal.TaskData;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
-public class ActivityTransport extends AppCompatActivity {
+public class NewTaskActivity extends AppCompatActivity {
 
     private MaterialEditText mFullName, mDateOfTransport, mDestinationAddress, mOriginAddress, mPhoneNumber, mTransportDetails;
 

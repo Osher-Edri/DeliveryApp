@@ -1,4 +1,4 @@
-package com.example.movingcompanymanagement;
+package com.example.movingcompanymanagement.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,9 +9,10 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.movingcompanymanagement.R;
+import com.example.movingcompanymanagement.modal.UserData;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -20,13 +21,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
-public class Register extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 MaterialEditText register_firstName,register_lastName,register_email,register_password,register_phoneNumber;
 Button register_btn;
 ProgressBar register_progressBar;
 FirebaseAuth firebaseAuth;
 DatabaseReference databaseReference;
-User user;
+UserData userData;
 
 
     @Override
@@ -44,9 +45,9 @@ User user;
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        user = new User();
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("User");
-        //If user already logged in
+        userData = new UserData();
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("UserData");
+        //If userData already logged in
         if(firebaseAuth.getCurrentUser() != null){
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
             finish();
@@ -97,23 +98,23 @@ User user;
                 register_progressBar.setVisibility(View.VISIBLE);
 
                 //Insert data into Realtime Database (firebase)
-                user.setFirstName(firstName);
-                user.setLastName(lastName);
-                user.setEmail(email);
-                user.setPassword(password);
-                user.setPhoneNumber(phoneNumber);
-                databaseReference.push().setValue(user);
+                userData.setFirstName(firstName);
+                userData.setLastName(lastName);
+                userData.setEmail(email);
+                userData.setPassword(password);
+                userData.setPhoneNumber(phoneNumber);
+                databaseReference.push().setValue(userData);
 
-                //Register in Firebase
+                //RegisterActivity in Firebase
                 firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            Toast.makeText(Register.this, "User Created.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, "UserData Created.", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(),MainActivity.class));
                         }
                         else{
-                            Toast.makeText(Register.this, "Error !" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, "Error !" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             register_progressBar.setVisibility(View.GONE);
                         }
                     }

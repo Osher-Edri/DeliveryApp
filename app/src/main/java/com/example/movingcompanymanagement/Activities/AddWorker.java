@@ -1,4 +1,4 @@
-package com.example.movingcompanymanagement;
+package com.example.movingcompanymanagement.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 
+import com.example.movingcompanymanagement.R;
+import com.example.movingcompanymanagement.modal.UserData;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -22,7 +24,7 @@ public class AddWorker extends AppCompatActivity {
     Button register_btn;
     FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference;
-    User user;
+    UserData userData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +37,7 @@ public class AddWorker extends AppCompatActivity {
 
         //define dropdown menu to select worker permission
         register_permission = findViewById(R.id.addWorker_permission);
-        String[] items = new String[]{"Manager", "Driver"};
+        String[] items = new String[]{"Manager", "DriverActivity"};
         //create an adapter to describe how the items are displayed, adapters are used in several places in android.
         //There are multiple variations of this, but this is the basic variant.
         //create an adapter to describe how the items are displayed, adapters are used in several places in android.
@@ -48,8 +50,8 @@ public class AddWorker extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        user = new User();
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("User");
+        userData = new UserData();
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("UserData");
 
         register_btn.setOnClickListener(new View.OnClickListener() {
             @Override

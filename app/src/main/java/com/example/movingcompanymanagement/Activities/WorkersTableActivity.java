@@ -1,10 +1,13 @@
-package com.example.movingcompanymanagement;
+package com.example.movingcompanymanagement.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class workersTable extends AppCompatActivity {
+import com.example.movingcompanymanagement.R;
+
+//*********currently hard codded in xml!!!!!!!!!!!
+public class WorkersTableActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
