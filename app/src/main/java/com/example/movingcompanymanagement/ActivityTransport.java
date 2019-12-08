@@ -46,7 +46,7 @@ public class ActivityTransport extends AppCompatActivity {
                 String sTransportDetails = mTransportDetails.getText().toString();
 
                 TaskData newTask = new TaskData();
-                
+
                 newTask.setContact_name(sFullName);
                 newTask.setOrder_date(sDateOfTransport);
                 newTask.setAddress(sDestinationAddress);
