@@ -1,4 +1,4 @@
-package com.example.movingcompanymanagement;
+package com.example.movingcompanymanagement.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,13 +12,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.movingcompanymanagement.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
-public class Login extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
     MaterialEditText login_email,login_password;
     Button login_btn;
     ProgressBar login_progressBar;
@@ -65,11 +66,11 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(Login.this, "Logged in SuccessFully", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Logged in SuccessFully", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(),MainActivity.class));
                         }
                         else {
-                            Toast.makeText(Login.this, "Error !" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Error !" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             login_progressBar.setVisibility(View.GONE);
                         }
                     }
@@ -81,7 +82,7 @@ public class Login extends AppCompatActivity {
         login_txt_create_account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),Register.class));
+                startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
             }
         });
 

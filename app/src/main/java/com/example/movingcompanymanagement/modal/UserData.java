@@ -1,6 +1,6 @@
-package com.example.movingcompanymanagement;
+package com.example.movingcompanymanagement.modal;
 
-public class User {
+public class UserData {
 
     private String firstName;
     private String lastName;
@@ -8,7 +8,7 @@ public class User {
     private String password;
     private int phoneNumber;
 
-    public User(){
+    public UserData(){
 
     }
 

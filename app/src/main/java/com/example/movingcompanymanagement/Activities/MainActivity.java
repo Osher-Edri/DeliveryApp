@@ -1,4 +1,4 @@
-package com.example.movingcompanymanagement;
+package com.example.movingcompanymanagement.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.movingcompanymanagement.R;
+import com.example.movingcompanymanagement.TaskTable;
+import com.example.movingcompanymanagement.taskOverview;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void driver(View view){
-        startActivity(new Intent(getApplicationContext(), Driver.class));
+        startActivity(new Intent(getApplicationContext(), DriverActivity.class));
         //finish();
     }
     public void manager(View view){
@@ -38,17 +41,17 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void workersTable(View view) {
-        startActivity(new Intent(getApplicationContext(), workersTable.class));
+        startActivity(new Intent(getApplicationContext(), WorkersTableActivity.class));
     }
 
 
     public void logout(View view){
         FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(getApplicationContext(),Login.class));
+        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
         finish();
     }
     public void newTask(View view){
-        startActivity(new Intent(getApplicationContext(), ActivityTransport.class));
+        startActivity(new Intent(getApplicationContext(), NewTaskActivity.class));
     }
 
     public void showTask(View view){
