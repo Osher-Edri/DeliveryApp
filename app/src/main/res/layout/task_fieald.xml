@@ -1,42 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="12dp"
     android:layout_margin="10dp"
     android:elevation="19dp">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/view_fullName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:textSize="15dp"
-        android:textColor="@android:color/black"
-        android:text="XXX"
-        android:gravity="center"/>
 
-    <TextView
-        android:id="@+id/view_phoneNumber"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:textSize="15dp"
-        android:textColor="@android:color/black"
-        android:text="XXX"
-        android:gravity="center"/>
+
 
     <TextView
         android:id="@+id/view_dateTransport"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="33.3"
         android:padding="15dp"
         android:textSize="15dp"
         android:textColor="@android:color/black"
@@ -44,36 +24,23 @@
         android:gravity="center"/>
 
     <TextView
-        android:id="@+id/view_destinationAddress"
+        android:id="@+id/view_area"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="33.3"
+        android:gravity="center"
         android:padding="15dp"
-        android:textSize="15dp"
-        android:textColor="@android:color/black"
         android:text="XXX"
-        android:gravity="center"/>
+        android:textColor="@android:color/black"
+        android:textSize="15dp" />
 
-    <TextView
-        android:id="@+id/view_originAddress"
+    <Spinner
+        android:id="@+id/view_selectDriver"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:textSize="15dp"
-        android:textColor="@android:color/black"
-        android:text="XXX"
-        android:gravity="center"/>
+        android:background="@android:drawable/btn_dropdown"
+        android:layout_weight="33.3"
 
-    <TextView
-        android:id="@+id/view_transportDetails"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:textSize="15dp"
-        android:textColor="@android:color/black"
-        android:text="XXX"
-        android:gravity="center"/>
-
-</LinearLayout>
-
+        android:spinnerMode="dropdown"/>
 
 </LinearLayout>

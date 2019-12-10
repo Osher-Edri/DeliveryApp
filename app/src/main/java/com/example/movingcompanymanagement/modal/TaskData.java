@@ -15,6 +15,7 @@ public class TaskData {
     private String order_note;//order details
     private String driver_note;
     private String originAddress;
+    private String area;
 
 
 
@@ -150,5 +151,13 @@ public class TaskData {
 
     public void setOriginAddress(String originAddress) {
         this.originAddress = originAddress;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
     }
 }

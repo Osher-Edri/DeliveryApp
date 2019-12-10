@@ -5,6 +5,8 @@ import android.os.PersistableBundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -108,12 +110,16 @@ public class TaskDetailsActivity extends AppCompatActivity {
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             TaskData data = taskData.get(position);
 
-            holder.fullName.setText(data.getContact_name());
+            //holder.fullName.setText(data.getContact_name());
             holder.order_date.setText(data.getOrder_date());
-            holder.address.setText(data.getAddress());
-            holder.contact_phone.setText(data.getContact_phone());
-            holder.order_note.setText(data.getOrder_note());
-            holder.originAddress.setText(data.getOriginAddress());
+            //holder.address.setText(data.getAddress());
+           // holder.contact_phone.setText(data.getContact_phone());
+           // holder.order_note.setText(data.getOrder_note());
+            holder.area.setText(data.getArea());
+
+            String[] drivers = new String[]{"driver1","driver2","driver3"};
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(TaskDetailsActivity.this, android.R.layout.simple_spinner_dropdown_item, drivers);
+            holder.driver.setAdapter(adapter);
 
         }
 
@@ -123,18 +129,19 @@ public class TaskDetailsActivity extends AppCompatActivity {
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView fullName,order_date,address,contact_phone,order_note,originAddress;
+        TextView fullName,order_date,address,contact_phone,order_note,originAddress,  area;
+        Spinner driver;
 
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
 
-            fullName = (TextView)itemView.findViewById(R.id.view_fullName);
+            //fullName = (TextView)itemView.findViewById(R.id.view_fullName);
             order_date = (TextView)itemView.findViewById(R.id.view_dateTransport);
-            address = (TextView)itemView.findViewById(R.id.view_destinationAddress);
-            contact_phone = (TextView)itemView.findViewById(R.id.view_phoneNumber);
-            order_note = (TextView)itemView.findViewById(R.id.view_transportDetails);
-            originAddress = (TextView)itemView.findViewById(R.id.view_originAddress);
-
+            //address = (TextView)itemView.findViewById(R.id.view_destinationAddress);
+            //contact_phone = (TextView)itemView.findViewById(R.id.view_phoneNumber);
+            //order_note = (TextView)itemView.findViewById(R.id.view_transportDetails);
+            area = (TextView)itemView.findViewById(R.id.view_area);
+            driver = (Spinner)itemView.findViewById(R.id.view_selectDriver);
             }
         }
     }

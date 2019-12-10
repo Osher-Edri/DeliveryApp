@@ -59,6 +59,13 @@
             android:inputType="text"
             android:hint="Transport Details"/>
 
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/transport_area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Area"/>
+
     </LinearLayout>
 
     <Button

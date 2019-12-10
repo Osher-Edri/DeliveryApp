@@ -14,7 +14,7 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 
 public class NewTaskActivity extends AppCompatActivity {
 
-    private MaterialEditText mFullName, mDateOfTransport, mDestinationAddress, mOriginAddress, mPhoneNumber, mTransportDetails;
+    private MaterialEditText mFullName, mArea, mDateOfTransport, mDestinationAddress, mOriginAddress, mPhoneNumber, mTransportDetails;
 
     private Button btn_submit;
     private DatabaseReference databaseReference;
@@ -25,12 +25,13 @@ public class NewTaskActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transport);
 
-        mFullName = (MaterialEditText)findViewById(R.id.transport_fullName);
+         mFullName = (MaterialEditText)findViewById(R.id.transport_fullName);
         mDateOfTransport = (MaterialEditText)findViewById(R.id.transport_dateOfTransport);
         mDestinationAddress = (MaterialEditText)findViewById(R.id.transport_destinationAddress);
         mOriginAddress = (MaterialEditText)findViewById(R.id.transport_originAddress);
         mPhoneNumber = (MaterialEditText)findViewById(R.id.transport_phoneNumber);
-        mTransportDetails = (MaterialEditText)findViewById(R.id.transport_transportDetails);
+       mTransportDetails = (MaterialEditText)findViewById(R.id.transport_transportDetails);
+        mArea = (MaterialEditText)findViewById(R.id.transport_area);
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Tasks");
 
@@ -45,18 +46,22 @@ public class NewTaskActivity extends AppCompatActivity {
                 String sOriginAddress = mOriginAddress.getText().toString();
                 String sPhoneNumber = mPhoneNumber.getText().toString();
                 String sTransportDetails = mTransportDetails.getText().toString();
+                String sArea = mArea.getText().toString();
+
 
                 TaskData newTask = new TaskData();
 
                 newTask.setContact_name(sFullName);
-                newTask.setOrder_date(sDateOfTransport);
                 newTask.setAddress(sDestinationAddress);
+                newTask.setOriginAddress(sOriginAddress);
                 newTask.setContact_phone(sPhoneNumber);
                 newTask.setOrder_note(sTransportDetails);
-                newTask.setOriginAddress(sOriginAddress);
+                newTask.setOrder_date(sDateOfTransport); 
+                newTask.setArea(sArea);
 
                 databaseReference.push().setValue(newTask);
 
+                finish(); //close Activity
             }
         });
     }
