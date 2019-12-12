@@ -2,12 +2,15 @@ package com.example.movingcompanymanagement.Activities;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,20 +22,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movingcompanymanagement.R;
 import com.example.movingcompanymanagement.modal.TaskData;
+import com.example.movingcompanymanagement.modal.UserData;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.auth.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TooManyListenersException;
 
 public class TaskDetailsActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     MyAdapter adapter;
-    List<TaskData>  taskData;
+    List<TaskData> taskData;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
@@ -47,7 +54,7 @@ public class TaskDetailsActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(),LinearLayoutManager.VERTICAL));
+        recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayoutManager.VERTICAL));
 
         taskData = new ArrayList<>();
         adapter = new MyAdapter(taskData);
@@ -57,7 +64,7 @@ public class TaskDetailsActivity extends AppCompatActivity {
 
     }
 
-    void getDataFirebase(){
+    void getDataFirebase() {
         databaseReference = FirebaseDatabase.getInstance().getReference("Tasks");
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
@@ -91,18 +98,18 @@ public class TaskDetailsActivity extends AppCompatActivity {
         });
     }
 
-    public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
+    public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
-        List<TaskData> taskData ;
+        List<TaskData> taskData;
 
-        public  MyAdapter(List<TaskData> taskData){
+        public MyAdapter(List<TaskData> taskData) {
             this.taskData = taskData;
         }
 
         @NonNull
         @Override
         public MyAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_fieald,parent,false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_fieald, parent, false);
             return new ViewHolder(view);
         }
 
@@ -113,13 +120,14 @@ public class TaskDetailsActivity extends AppCompatActivity {
             //holder.fullName.setText(data.getContact_name());
             holder.order_date.setText(data.getOrder_date());
             //holder.address.setText(data.getAddress());
-           // holder.contact_phone.setText(data.getContact_phone());
-           // holder.order_note.setText(data.getOrder_note());
+            // holder.contact_phone.setText(data.getContact_phone());
+            // holder.order_note.setText(data.getOrder_note());
             holder.area.setText(data.getArea());
 
-            String[] drivers = new String[]{"driver1","driver2","driver3"};
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(TaskDetailsActivity.this, android.R.layout.simple_spinner_dropdown_item, drivers);
-            holder.driver.setAdapter(adapter);
+//            String[] drivers = new String[]{"driver1","driver2","driver3"};
+//            ArrayAdapter<String> adapter = new ArrayAdapter<>(TaskDetailsActivity.this, android.R.layout.simple_spinner_dropdown_item, drivers);
+//            holder.driver.setAdapter(adapter);
+//
 
         }
 
@@ -129,22 +137,74 @@ public class TaskDetailsActivity extends AppCompatActivity {
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView fullName,order_date,address,contact_phone,order_note,originAddress,  area;
-        Spinner driver;
+            TextView fullName, order_date, address, contact_phone, order_note, originAddress, area;
+            Spinner driver;
+            ArrayList<String> drivers = new ArrayList<>();
 
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
 
-            //fullName = (TextView)itemView.findViewById(R.id.view_fullName);
-            order_date = (TextView)itemView.findViewById(R.id.view_dateTransport);
-            //address = (TextView)itemView.findViewById(R.id.view_destinationAddress);
-            //contact_phone = (TextView)itemView.findViewById(R.id.view_phoneNumber);
-            //order_note = (TextView)itemView.findViewById(R.id.view_transportDetails);
-            area = (TextView)itemView.findViewById(R.id.view_area);
-            driver = (Spinner)itemView.findViewById(R.id.view_selectDriver);
+                //fullName = (TextView)itemView.findViewById(R.id.view_fullName);
+                order_date = (TextView) itemView.findViewById(R.id.view_dateTransport);
+                //address = (TextView)itemView.findViewById(R.id.view_destinationAddress);
+                //contact_phone = (TextView)itemView.findViewById(R.id.view_phoneNumber);
+                //order_note = (TextView)itemView.findViewById(R.id.view_transportDetails);
+                area = (TextView) itemView.findViewById(R.id.view_area);
+                driver = (Spinner) itemView.findViewById(R.id.view_selectDriver);
+
+                // todo - filter only drivers + put it in function or mybe object
+                databaseReference = FirebaseDatabase.getInstance().getReference("User");
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        drivers.clear();
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+
+                            String name = ds.child("firstName").getValue(String.class);
+                            Log.i("noam", name);
+                            drivers.add(name);
+
+                        }
+                        Log.i("noam: ", drivers.toString());
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+
+                });
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(TaskDetailsActivity.this, android.R.layout.simple_spinner_dropdown_item, drivers);
+                driver.setAdapter(adapter);
+
+
+                driver.setSelection(0,false);
+
+                driver.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+
+                    {
+                        @Override
+                        public void onItemSelected (AdapterView < ? > parent, View view,
+                        int position, long id){
+                        String selected_d = parent.getItemAtPosition(position).toString();
+                        TaskData data = taskData.get(position);
+                        data.setDriver(selected_d);
+                        Toast.makeText(TaskDetailsActivity.this, "driver selected: " + selected_d, Toast.LENGTH_SHORT).show();
+                        databaseReference.push().setValue(data);
+                    }
+
+                        @Override
+                        public void onNothingSelected (AdapterView < ? > parent){
+
+                    }
+                    });
+
+
+                }
             }
         }
+
+
     }
-
-
-}

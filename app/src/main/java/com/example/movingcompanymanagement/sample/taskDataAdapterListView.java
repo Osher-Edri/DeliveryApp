@@ -15,7 +15,7 @@ import com.example.movingcompanymanagement.modal.TaskData;
 
 import java.util.List;
 
-public class taskDataAdapterListView extends ArrayAdapter {
+public class taskDataAdapterListView extends ArrayAdapter<TaskData> {
 
     List<TaskData> m_task_data;
     LayoutInflater mInflater;

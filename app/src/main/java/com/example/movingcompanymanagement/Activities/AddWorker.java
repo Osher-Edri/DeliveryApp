@@ -53,6 +53,7 @@ public class AddWorker extends AppCompatActivity {
         userData = new UserData();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("UserData");
 
+
         register_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
