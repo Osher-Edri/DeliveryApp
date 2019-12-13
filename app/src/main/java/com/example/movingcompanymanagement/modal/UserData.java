@@ -7,6 +7,7 @@ public class UserData {
     private String email;
     private String password;
     private int phoneNumber;
+    private String role;
 
     public UserData(){
 
@@ -50,5 +51,13 @@ public class UserData {
 
     public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public void setRole(String role){
+        this.role = role;
+    }
+
+    public String getRole(){
+        return this.role;
     }
 }

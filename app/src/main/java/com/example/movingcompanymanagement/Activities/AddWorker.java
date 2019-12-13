@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -17,7 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
-public class AddWorker extends AppCompatActivity {
+public class AddWorker extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     MaterialEditText register_firstName,register_lastName,register_email,register_password,register_phoneNumber;
     ProgressBar register_progressBar;
     Spinner register_permission;
@@ -37,21 +38,18 @@ public class AddWorker extends AppCompatActivity {
 
         //define dropdown menu to select worker permission
         register_permission = findViewById(R.id.addWorker_permission);
-        String[] items = new String[]{"Manager", "DriverActivity"};
-        //create an adapter to describe how the items are displayed, adapters are used in several places in android.
-        //There are multiple variations of this, but this is the basic variant.
-        //create an adapter to describe how the items are displayed, adapters are used in several places in android.
-        //There are multiple variations of this, but this is the basic variant.
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        String[] items = new String[]{"Manager", "Driver"};
+        //create an adapter to describe how the items are displayed.
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         register_permission.setAdapter(adapter);
-
+        register_permission.setOnItemSelectedListener(this);
         register_btn = findViewById(R.id.addWorker_btn);
         register_progressBar = findViewById(R.id.addWorker_progressBar);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
         userData = new UserData();
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("UserData");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("User");
 
 
         register_btn.setOnClickListener(new View.OnClickListener() {
@@ -90,15 +88,30 @@ public class AddWorker extends AppCompatActivity {
                     register_lastName.setError("Please Fill lastName Fields");
                     return;
                 }
-//                if(TextUtils.isEmpty(Integer.toString(phoneNumber))){
-//                    register_phoneNumber.setError("Please Fill phoneNumber Fields");
-//                    return;
-//                }
 
                 register_progressBar.setVisibility(View.VISIBLE);
+
+                userData.setEmail(email);
+                userData.setFirstName(firstName);
+                userData.setLastName(lastName);
+                userData.setPassword(password);
+                userData.setPhoneNumber(phoneNumber);
+                databaseReference.push().setValue(userData);
+                finish();
             }
         });
+
+
     }
 
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        this.userData.setRole((String)parent.getAdapter().getItem(position));
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 }
