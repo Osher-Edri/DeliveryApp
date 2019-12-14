@@ -46,7 +46,7 @@ UserData userData;
         firebaseAuth = FirebaseAuth.getInstance();
 
         userData = new UserData();
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("UserData");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("User");
         //If userData already logged in
         if(firebaseAuth.getCurrentUser() != null){
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
@@ -103,13 +103,12 @@ UserData userData;
                 userData.setEmail(email);
                 userData.setPassword(password);
                 userData.setPhoneNumber(phoneNumber);
-                databaseReference.push().setValue(userData);
-
-                //RegisterActivity in Firebase
                 firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
+                            userData.setID(firebaseAuth.getUid());
+                            databaseReference.push().setValue(userData);
                             Toast.makeText(RegisterActivity.this, "UserData Created.", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(),MainActivity.class));
                         }

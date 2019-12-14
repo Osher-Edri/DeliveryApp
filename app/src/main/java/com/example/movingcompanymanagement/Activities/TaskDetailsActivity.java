@@ -159,11 +159,12 @@ public class TaskDetailsActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         drivers.clear();
                         for (DataSnapshot ds : dataSnapshot.getChildren()) {
-
-                            String name = ds.child("firstName").getValue(String.class);
-                            Log.i("noam", name);
-                            drivers.add(name);
-
+                            String role = ds.child("role").getValue(String.class);
+                            if(role.equals("Driver")) {
+                                String name = ds.child("firstName").getValue(String.class);
+                                Log.i("noam", name);
+                                drivers.add(name);
+                            }
                         }
                         Log.i("noam: ", drivers.toString());
 

@@ -13,6 +13,7 @@ import com.example.movingcompanymanagement.modal.TaskData;
 import com.example.movingcompanymanagement.sample.SampleDataProvider;
 import com.example.movingcompanymanagement.sample.taskDataAdapter;
 import com.example.movingcompanymanagement.sample.taskDataAdapterListView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -38,6 +39,7 @@ public class taskOverview extends AppCompatActivity {
     List<String> adrresses = new ArrayList<>();
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    FirebaseAuth firebaseAuth;
 //    ListView mListView = (ListView) findViewById(R.id.tasks_list);
 
 
