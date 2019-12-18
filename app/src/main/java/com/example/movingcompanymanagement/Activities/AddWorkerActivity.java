@@ -7,8 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.movingcompanymanagement.R;
@@ -21,37 +24,39 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
-public class RegisterActivity extends AppCompatActivity {
-MaterialEditText register_firstName,register_lastName,register_email,register_password,register_phoneNumber;
-Button register_btn;
-ProgressBar register_progressBar;
-FirebaseAuth firebaseAuth;
-DatabaseReference databaseReference;
-UserData userData;
-
-
+public class AddWorkerActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    MaterialEditText register_firstName,register_lastName,register_email,register_password,register_phoneNumber;
+    ProgressBar register_progressBar;
+    Spinner register_permission;
+    Button register_btn;
+    FirebaseAuth firebaseAuth;
+    DatabaseReference databaseReference;
+    UserData userData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_add_worker);
+        register_firstName =  findViewById(R.id.addWorker_firstName);
+        register_lastName = findViewById(R.id.addWorker_lastName);
+        register_email = findViewById(R.id.addWorker_email);
+        register_password = findViewById(R.id.addWorker_password);
+        register_phoneNumber = findViewById(R.id.addWorker_phoneNumber);
 
-        register_firstName = (MaterialEditText) findViewById(R.id.register_firstName);
-        register_lastName = (MaterialEditText) findViewById(R.id.register_lastName);
-        register_email = (MaterialEditText) findViewById(R.id.register_email);
-        register_password = (MaterialEditText) findViewById(R.id.register_password);
-        register_phoneNumber = (MaterialEditText) findViewById(R.id.register_phoneNumber);
-        register_btn = findViewById(R.id.register_btn);
-        register_progressBar = findViewById(R.id.register_progressBar);
+        //define dropdown menu to select worker permission
+        register_permission = findViewById(R.id.addWorker_permission);
+        String[] items = new String[]{"Manager", "Driver"};
+        //create an adapter to describe how the items are displayed.
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        register_permission.setAdapter(adapter);
+        register_permission.setOnItemSelectedListener(this);
+        register_btn = findViewById(R.id.addWorker_btn);
+        register_progressBar = findViewById(R.id.addWorker_progressBar);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
         userData = new UserData();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("User");
-        //If userData already logged in
-        if(firebaseAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(),MainActivity.class));
-            finish();
-        }
+
 
         register_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +73,6 @@ UserData userData;
                     register_phoneNumber.setError("Please Fill phoneNumber Fields");
                     return;
                 }
-
 
                 if(TextUtils.isEmpty(email)){
                     register_email.setError("Email is Required");
@@ -90,40 +94,43 @@ UserData userData;
                     register_lastName.setError("Please Fill lastName Fields");
                     return;
                 }
-//                if(TextUtils.isEmpty(Integer.toString(phoneNumber))){
-//                    register_phoneNumber.setError("Please Fill phoneNumber Fields");
-//                    return;
-//                }
 
                 register_progressBar.setVisibility(View.VISIBLE);
 
-                //Insert data into Realtime Database (firebase)
+                userData.setEmail(email);
                 userData.setFirstName(firstName);
                 userData.setLastName(lastName);
-                userData.setEmail(email);
                 userData.setPassword(password);
                 userData.setPhoneNumber(phoneNumber);
                 firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            userData.setID(firebaseAuth.getUid());
-                            databaseReference.push().setValue(userData);
-                            Toast.makeText(RegisterActivity.this, "UserData Created.", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                            databaseReference.child(firebaseAuth.getUid()).setValue(userData);
+                            Toast.makeText(AddWorkerActivity.this, "User Created.", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(),ManagerMainActivity.class));
                         }
                         else{
-                            Toast.makeText(RegisterActivity.this, "Error !" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddWorkerActivity.this, "Error !" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             register_progressBar.setVisibility(View.GONE);
                         }
                     }
                 });
-
-
+                finish();
             }
         });
 
 
+    }
+
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        this.userData.setRole((String)parent.getAdapter().getItem(position));
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
 
     }
 }

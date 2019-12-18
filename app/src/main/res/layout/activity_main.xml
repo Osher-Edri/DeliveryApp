@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:onClick="newTask"
-        android:text="@string/newtask" />
+        android:text="@string/newTask" />
 
     <Button
         android:id="@+id/button7"
@@ -72,6 +72,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:onClick="showTask"
-        android:text="@string/showtask" />
+        android:text="@string/showTask" />
 
 </LinearLayout>

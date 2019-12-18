@@ -15,6 +15,9 @@
     <string name="hide">Hide</string>
     <string name="task_table">task table</string>
     <string name="workers_table">workers table</string>
-    <string name="newtask">newTask</string>
-    <string name="showtask">showTask</string>
+    <string name="newTask">New Task</string>
+    <string name="showTask">showTask</string>
+    <string name="addWorker">Add Worker</string>
+    <string name="selectTaskDriver">Select Task Driver</string>
+    <string name="tasksList">Tasks List</string>
 </resources>

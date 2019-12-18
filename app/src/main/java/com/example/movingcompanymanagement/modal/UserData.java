@@ -8,17 +8,11 @@ public class UserData {
     private String password;
     private int phoneNumber;
     private String role;
-    private String ID;
 
     public UserData(){
 
     }
-    public void setID(String ID){
-        this.ID = ID;
-    }
-    public String getID(){
-        return this.ID;
-    }
+
     public String getFirstName() {
         return firstName;
     }

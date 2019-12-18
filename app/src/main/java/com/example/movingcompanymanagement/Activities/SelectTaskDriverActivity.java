@@ -1,7 +1,6 @@
 package com.example.movingcompanymanagement.Activities;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,20 +21,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movingcompanymanagement.R;
 import com.example.movingcompanymanagement.modal.TaskData;
-import com.example.movingcompanymanagement.modal.UserData;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.auth.User;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TooManyListenersException;
 
-public class TaskDetailsActivity extends AppCompatActivity {
+public class SelectTaskDriverActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     MyAdapter adapter;
@@ -125,7 +121,7 @@ public class TaskDetailsActivity extends AppCompatActivity {
             holder.area.setText(data.getArea());
 
 //            String[] drivers = new String[]{"driver1","driver2","driver3"};
-//            ArrayAdapter<String> adapter = new ArrayAdapter<>(TaskDetailsActivity.this, android.R.layout.simple_spinner_dropdown_item, drivers);
+//            ArrayAdapter<String> adapter = new ArrayAdapter<>(SelectTaskDriverActivity.this, android.R.layout.simple_spinner_dropdown_item, drivers);
 //            holder.driver.setAdapter(adapter);
 //
 
@@ -177,7 +173,7 @@ public class TaskDetailsActivity extends AppCompatActivity {
                     }
 
                 });
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(TaskDetailsActivity.this, android.R.layout.simple_spinner_dropdown_item, drivers);
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(SelectTaskDriverActivity.this, android.R.layout.simple_spinner_dropdown_item, drivers);
                 driver.setAdapter(adapter);
 
 
@@ -192,7 +188,7 @@ public class TaskDetailsActivity extends AppCompatActivity {
                         String selected_d = parent.getItemAtPosition(position).toString();
                         TaskData data = taskData.get(position);
                         data.setDriver(selected_d);
-                        Toast.makeText(TaskDetailsActivity.this, "driver selected: " + selected_d, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SelectTaskDriverActivity.this, "driver selected: " + selected_d, Toast.LENGTH_SHORT).show();
                         databaseReference.push().setValue(data);
                     }
 

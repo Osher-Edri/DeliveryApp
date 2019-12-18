@@ -12,13 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.NewTaskActivity"></activity>
-        <activity android:name=".Activities.WorkersTableActivity"></activity>
+        <activity android:name=".Activities.DriverMainActivity"></activity>
+        <activity android:name=".Activities.ManagerMainActivity" />
+        <activity android:name=".Activities.NewTaskActivity" />
         <activity android:name=".TaskTable" />
-        <activity android:name=".taskOverview" />
-        <activity android:name=".Activities.TaskDetailsActivity" />
-        <activity android:name=".Activities.AddWorker" />
-        <activity android:name=".Activities.DriverActivity" />
+        <activity android:name=".Activities.tasksListActivity" />
+        <activity android:name=".Activities.SelectTaskDriverActivity" />
+        <activity android:name=".Activities.AddWorkerActivity" />
         <activity android:name=".Activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,8 +26,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.RegisterActivity" />
-        <activity android:name=".Activities.MainActivity" />
     </application>
 
 </manifest>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activities.ManagerMainActivity">
+
+    <Button
+    android:id="@+id/btn_addWorker"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:onClick="addWorker"
+    android:text="@string/addWorker" />
+    <Button
+        android:id="@+id/btn_newTask"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:onClick="newTask"
+        android:text="@string/newTask" />
+    <Button
+        android:id="@+id/btn_taskDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:onClick="selectTaskDriver"
+        android:text="@string/selectTaskDriver" />
+    <Button
+        android:id="@+id/btn_logOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:onClick="logout"
+        android:text="@string/logout" />
+
+</LinearLayout>
