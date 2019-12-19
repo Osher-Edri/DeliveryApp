@@ -38,7 +38,7 @@ public class SelectTaskDriverActivity extends AppCompatActivity {
     List<TaskData> taskData;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-
+    ArrayList<String> drivers = new ArrayList<>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +55,31 @@ public class SelectTaskDriverActivity extends AppCompatActivity {
         taskData = new ArrayList<>();
         adapter = new MyAdapter(taskData);
         firebaseDatabase = FirebaseDatabase.getInstance();
+        // todo - filter only drivers + put it in function or mybe object
+        databaseReference = FirebaseDatabase.getInstance().getReference("User");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                drivers.clear();
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    String role = ds.child("role").getValue(String.class);
+                    if(role.equals("Driver")) {
+                        String name = ds.child("firstName").getValue(String.class);
+                        Log.i("noam", name);
+                        drivers.add(name);
+                    }
+                }
+                Log.i("noam: test drivers arr", drivers.toString());
 
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+
+        });
         getDataFirebase();
 
     }
@@ -135,11 +159,11 @@ public class SelectTaskDriverActivity extends AppCompatActivity {
         public class ViewHolder extends RecyclerView.ViewHolder {
             TextView fullName, order_date, address, contact_phone, order_note, originAddress, area;
             Spinner driver;
-            ArrayList<String> drivers = new ArrayList<>();
+
 
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
-
+                
                 //fullName = (TextView)itemView.findViewById(R.id.view_fullName);
                 order_date = (TextView) itemView.findViewById(R.id.view_dateTransport);
                 //address = (TextView)itemView.findViewById(R.id.view_destinationAddress);
@@ -148,31 +172,8 @@ public class SelectTaskDriverActivity extends AppCompatActivity {
                 area = (TextView) itemView.findViewById(R.id.view_area);
                 driver = (Spinner) itemView.findViewById(R.id.view_selectDriver);
 
-                // todo - filter only drivers + put it in function or mybe object
-                databaseReference = FirebaseDatabase.getInstance().getReference("User");
-                databaseReference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        drivers.clear();
-                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                            String role = ds.child("role").getValue(String.class);
-                            if(role.equals("Driver")) {
-                                String name = ds.child("firstName").getValue(String.class);
-                                Log.i("noam", name);
-                                drivers.add(name);
-                            }
-                        }
-                        Log.i("noam: ", drivers.toString());
 
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-
-                });
+                Log.i("David test drivers size", Integer.toString(drivers.size()));
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(SelectTaskDriverActivity.this, android.R.layout.simple_spinner_dropdown_item, drivers);
                 driver.setAdapter(adapter);
 
