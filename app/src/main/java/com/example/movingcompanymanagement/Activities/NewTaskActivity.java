@@ -4,12 +4,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.movingcompanymanagement.R;
 import com.example.movingcompanymanagement.modal.TaskData;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 public class NewTaskActivity extends AppCompatActivity {
@@ -58,8 +62,9 @@ public class NewTaskActivity extends AppCompatActivity {
                 newTask.setOrder_note(sTransportDetails);
                 newTask.setOrder_date(sDateOfTransport); 
                 newTask.setArea(sArea);
-
-                databaseReference.push().setValue(newTask);
+                databaseReference = databaseReference.push();
+                databaseReference.setValue(newTask);
+                databaseReference.child("task_id").setValue(databaseReference.getKey());
 
                 finish(); //close Activity
             }
