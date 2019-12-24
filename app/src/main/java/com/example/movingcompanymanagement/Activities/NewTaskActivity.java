@@ -1,6 +1,8 @@
 package com.example.movingcompanymanagement.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -9,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.movingcompanymanagement.R;
 import com.example.movingcompanymanagement.modal.TaskData;
+import com.example.movingcompanymanagement.modal.UserData;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,12 +25,17 @@ public class NewTaskActivity extends AppCompatActivity {
 
     private Button btn_submit;
     private DatabaseReference databaseReference;
+    UserData mangerUser;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transport);
+
+        Intent intent = getIntent();
+        mangerUser = (UserData) intent.getSerializableExtra("current user");
+        Log.i("noam", mangerUser.getFirstName());
 
          mFullName = (MaterialEditText)findViewById(R.id.transport_fullName);
         mDateOfTransport = (MaterialEditText)findViewById(R.id.transport_dateOfTransport);
@@ -62,6 +70,7 @@ public class NewTaskActivity extends AppCompatActivity {
                 newTask.setOrder_note(sTransportDetails);
                 newTask.setOrder_date(sDateOfTransport); 
                 newTask.setArea(sArea);
+                newTask.setSubmit_by_user(mangerUser.getFirstName());
                 databaseReference = databaseReference.push();
                 databaseReference.setValue(newTask);
                 databaseReference.child("task_id").setValue(databaseReference.getKey());

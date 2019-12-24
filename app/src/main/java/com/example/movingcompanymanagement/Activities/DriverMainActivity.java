@@ -20,7 +20,7 @@ public class DriverMainActivity extends AppCompatActivity {
 
     }
     public void tasksList(View view){
-        startActivity(new Intent(getApplicationContext(),tasksListActivity.class));
+        startActivity(new Intent(getApplicationContext(), DriverTasksListActivity.class));
     }
 
     public void logout(View view){

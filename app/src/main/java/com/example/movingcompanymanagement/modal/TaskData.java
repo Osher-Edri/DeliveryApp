@@ -11,6 +11,9 @@ public class TaskData {
     private String contact_name;
     private String contact_phone;
     private String driver;
+
+
+    private String submit_by_user;
     private String status;
     private String order_note;//order details
     private String driver_note;
@@ -18,12 +21,11 @@ public class TaskData {
     private String area;
 
 
-
     public TaskData() {
     }
 
     public TaskData(String task_id, String order_date, String task_date, String address, String region,
-                    String contact_name, String contact_phone, String driver, String status,
+                    String contact_name, String contact_phone, String driver, String submit_by_user , String status,
                     String order_note, String driver_note) {
 
         this.task_id = task_id;
@@ -34,6 +36,7 @@ public class TaskData {
         this.contact_name = contact_name;
         this.contact_phone = contact_phone;
         this.driver = driver;
+        this.submit_by_user = submit_by_user;
         this.status = status;
         this.order_note = order_note;
         this.driver_note = driver_note;
@@ -126,6 +129,11 @@ public class TaskData {
     public void setDriver_note(String driver_note) {
         this.driver_note = driver_note;
     }
+
+
+    public String getSubmit_by_user() {  return submit_by_user;  }
+
+    public void setSubmit_by_user(String submit_by_user) { this.submit_by_user = submit_by_user;  }
 
 
     @Override

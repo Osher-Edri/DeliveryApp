@@ -16,7 +16,7 @@
         <activity android:name=".Activities.ManagerMainActivity" />
         <activity android:name=".Activities.NewTaskActivity" />
         <activity android:name=".TaskTable" />
-        <activity android:name=".Activities.tasksListActivity" />
+        <activity android:name=".Activities.DriverTasksListActivity" />
         <activity android:name=".Activities.SelectTaskDriverActivity" />
         <activity android:name=".Activities.AddWorkerActivity" />
         <activity android:name=".Activities.LoginActivity">

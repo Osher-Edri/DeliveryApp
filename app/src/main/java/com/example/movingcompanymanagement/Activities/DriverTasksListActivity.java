@@ -2,20 +2,12 @@ package com.example.movingcompanymanagement.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.example.movingcompanymanagement.R;
 import com.example.movingcompanymanagement.modal.TaskData;
-import com.example.movingcompanymanagement.sample.SampleDataProvider;
-import com.example.movingcompanymanagement.sample.taskDataAdapter;
-import com.example.movingcompanymanagement.sample.taskDataAdapterListView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,20 +15,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
-public class tasksListActivity extends AppCompatActivity {
-
-//    TextView task_out;
-
-//    FirebaseDatabase firebaseDatabase;
-//    DatabaseReference databaseReference;
-//    SampleDataProvider data = new SampleDataProvider();
+public class DriverTasksListActivity extends AppCompatActivity {
 
 //    List<TaskData>  tasks;
-    List<TaskData>  tasks = SampleDataProvider.tasks_list;
+    List<TaskData>  tasks = new ArrayList<>();
     List<String> adrresses = new ArrayList<>();
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -66,9 +50,6 @@ public class tasksListActivity extends AppCompatActivity {
 
 
 
-        taskDataAdapterListView adapter = new taskDataAdapterListView(this, tasks );
-        ListView listView = (ListView) findViewById(R.id.tasks_list);
-        listView.setAdapter(adapter);
 
     }
 
