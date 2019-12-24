@@ -52,6 +52,7 @@ public class SelectTaskDriverActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 drivers.clear();
+                drivers.add("------");
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     String role = ds.child("role").getValue(String.class);
                     if (role.equals("Driver")) {
@@ -75,6 +76,7 @@ public class SelectTaskDriverActivity extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                tasks.clear();
                 for( DataSnapshot ds : dataSnapshot.getChildren() ){
                     TaskData data = ds.getValue(TaskData.class);
                     tasks.add(data);
@@ -111,6 +113,8 @@ public class SelectTaskDriverActivity extends AppCompatActivity {
             holder.taskData = data;
             holder.order_date.setText(data.getOrder_date());
             holder.area.setText(data.getArea());
+            int driverNameIndex = holder.driverNamesAdapter.getPosition(data.getDriver());
+            holder.driver_spinner.setSelection(driverNameIndex, false);
         }
 
         @Override
@@ -120,32 +124,35 @@ public class SelectTaskDriverActivity extends AppCompatActivity {
 
         public class ViewHolder extends RecyclerView.ViewHolder {
             TextView order_date, area;
-            Spinner driver_spinner;
+            Spinner driver_spinner =  itemView.findViewById(R.id.manager_spinner_select_driver);
             String taskKey;
             TaskData taskData;
+            ArrayAdapter<String> driverNamesAdapter;
 
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
                 order_date = itemView.findViewById(R.id.manager_date);
                 area = itemView.findViewById(R.id.manager_area);
-                driver_spinner = itemView.findViewById(R.id.manager_spinner_select_driver);
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(SelectTaskDriverActivity.this, android.R.layout.simple_spinner_dropdown_item, drivers);
-                driver_spinner.setAdapter(adapter);
-                driver_spinner.setSelection(0, false);
-
+                driverNamesAdapter = new ArrayAdapter<>(SelectTaskDriverActivity.this, android.R.layout.simple_spinner_dropdown_item, drivers);
+                driver_spinner.setAdapter(driverNamesAdapter);
                 driver_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        getTaskReference = FirebaseDatabase.getInstance().getReference("Tasks").child(taskKey);
                         String selected_d = parent.getItemAtPosition(position).toString();
-                        taskData.setDriver(selected_d);
-                        Toast.makeText(SelectTaskDriverActivity.this, "driver selected: " + selected_d, Toast.LENGTH_SHORT).show();
-                        getTaskReference.setValue(taskData);
+                        if(position != 0 && !taskData.getDriver().equals(selected_d)) {
+                            driver_spinner.setSelection(position);
+                            getTaskReference = FirebaseDatabase.getInstance().getReference("Tasks").child(taskKey);
+                            taskData.setDriver(selected_d);
+                            Toast.makeText(SelectTaskDriverActivity.this, "driver selected: " + selected_d, Toast.LENGTH_SHORT).show();
+                            getTaskReference.setValue(taskData);
+                        }
+                        else{
+                            driver_spinner.setSelection(position, false);
+                        }
                     }
 
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
-
                     }
                 });
             }
