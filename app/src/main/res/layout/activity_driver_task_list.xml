@@ -4,11 +4,10 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.SelectTaskDriverActivity">
-
+    tools:context=".Activities.DriverTasksListActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/driver_task_list_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
