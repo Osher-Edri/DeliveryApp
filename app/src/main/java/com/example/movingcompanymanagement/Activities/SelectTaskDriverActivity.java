@@ -9,14 +9,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.movingcompanymanagement.R;
 import com.example.movingcompanymanagement.modal.TaskData;
 import com.google.firebase.database.DataSnapshot;
@@ -33,7 +31,6 @@ public class SelectTaskDriverActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     MyAdapter adapter;
     List<TaskData> tasks;
-    FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     DatabaseReference getTaskReference;
     ArrayList<String> drivers = new ArrayList<>();
@@ -48,10 +45,8 @@ public class SelectTaskDriverActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayoutManager.VERTICAL));
-
         tasks = new ArrayList<>();
         adapter = new MyAdapter(tasks);
-        firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("User");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -125,7 +120,7 @@ public class SelectTaskDriverActivity extends AppCompatActivity {
 
         public class ViewHolder extends RecyclerView.ViewHolder {
             TextView order_date, area;
-            Spinner driver;
+            Spinner driver_spinner;
             String taskKey;
             TaskData taskData;
 
@@ -133,12 +128,12 @@ public class SelectTaskDriverActivity extends AppCompatActivity {
                 super(itemView);
                 order_date = itemView.findViewById(R.id.manager_date);
                 area = itemView.findViewById(R.id.manager_area);
-                driver = itemView.findViewById(R.id.manager_spinner_select_driver);
+                driver_spinner = itemView.findViewById(R.id.manager_spinner_select_driver);
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(SelectTaskDriverActivity.this, android.R.layout.simple_spinner_dropdown_item, drivers);
-                driver.setAdapter(adapter);
-                driver.setSelection(0, false);
+                driver_spinner.setAdapter(adapter);
+                driver_spinner.setSelection(0, false);
 
-                driver.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                driver_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         getTaskReference = FirebaseDatabase.getInstance().getReference("Tasks").child(taskKey);
@@ -153,11 +148,7 @@ public class SelectTaskDriverActivity extends AppCompatActivity {
 
                     }
                 });
-
-
             }
         }
     }
-
-
 }
