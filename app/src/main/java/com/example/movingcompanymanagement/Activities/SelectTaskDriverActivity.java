@@ -66,7 +66,6 @@ public class SelectTaskDriverActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-
         });
         getDataFirebase();
     }
@@ -129,6 +128,7 @@ public class SelectTaskDriverActivity extends AppCompatActivity {
             TaskData taskData;
             ArrayAdapter<String> driverNamesAdapter;
 
+
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
                 order_date = itemView.findViewById(R.id.manager_date);
@@ -139,15 +139,13 @@ public class SelectTaskDriverActivity extends AppCompatActivity {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         String selected_d = parent.getItemAtPosition(position).toString();
-                        if(position != 0 && !taskData.getDriver().equals(selected_d)) {
+                        String driverName = taskData.getDriver();
+                        if(driverName != null && !driverName.equals(selected_d)) {
                             driver_spinner.setSelection(position);
                             getTaskReference = FirebaseDatabase.getInstance().getReference("Tasks").child(taskKey);
                             taskData.setDriver(selected_d);
                             Toast.makeText(SelectTaskDriverActivity.this, "driver selected: " + selected_d, Toast.LENGTH_SHORT).show();
                             getTaskReference.setValue(taskData);
-                        }
-                        else{
-                            driver_spinner.setSelection(position, false);
                         }
                     }
 

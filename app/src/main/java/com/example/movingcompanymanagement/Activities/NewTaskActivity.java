@@ -33,12 +33,12 @@ public class NewTaskActivity extends AppCompatActivity {
         mangerUser = (UserData) intent.getSerializableExtra("current user");
         Log.i("noam", mangerUser.getFirstName());
 
-         mFullName = (MaterialEditText)findViewById(R.id.transport_fullName);
+        mFullName = (MaterialEditText)findViewById(R.id.transport_fullName);
         mDateOfTransport = (MaterialEditText)findViewById(R.id.transport_dateOfTransport);
         mDestinationAddress = (MaterialEditText)findViewById(R.id.transport_destinationAddress);
         mOriginAddress = (MaterialEditText)findViewById(R.id.transport_originAddress);
         mPhoneNumber = (MaterialEditText)findViewById(R.id.transport_phoneNumber);
-       mTransportDetails = (MaterialEditText)findViewById(R.id.transport_transportDetails);
+        mTransportDetails = (MaterialEditText)findViewById(R.id.transport_transportDetails);
         mArea = (MaterialEditText)findViewById(R.id.transport_area);
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Tasks");
@@ -66,6 +66,7 @@ public class NewTaskActivity extends AppCompatActivity {
                 newTask.setOrder_note(sTransportDetails);
                 newTask.setOrder_date(sDateOfTransport); 
                 newTask.setArea(sArea);
+                newTask.setDriver("------");
                 newTask.setSubmit_by_user(mangerUser.getFirstName());
                 databaseReference = databaseReference.push();
                 databaseReference.setValue(newTask);
