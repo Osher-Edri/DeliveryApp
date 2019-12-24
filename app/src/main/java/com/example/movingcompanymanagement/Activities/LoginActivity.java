@@ -36,11 +36,8 @@ public class LoginActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     //used to query the user's role
     ValueEventListener roleEventListener;
-    //the role of the current user
-    String role;
-    String userName;
+    //the data of the current user
     UserData currentUser;
-    private final Semaphore available = new Semaphore(1, true);
 
 
     @Override
@@ -54,27 +51,6 @@ public class LoginActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("User");
         firebaseAuth = FirebaseAuth.getInstance();
         setLoginListener();
-        if (firebaseAuth.getUid() != null) {
-            setRoleListener();
-            databaseReference.addListenerForSingleValueEvent(roleEventListener);
-        } else {
-            role = "Driver";
-        }
-
-
-    }
-
-    private void setRoleListener() {
-        roleEventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                role = dataSnapshot.child(firebaseAuth.getUid()).child("role").getValue(String.class);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        };
     }
 
     private void setLoginListener() {

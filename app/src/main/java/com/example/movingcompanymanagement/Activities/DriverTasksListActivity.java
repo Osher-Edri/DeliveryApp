@@ -7,15 +7,16 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.example.movingcompanymanagement.R;
 import com.example.movingcompanymanagement.modal.TaskData;
+import com.example.movingcompanymanagement.modal.UserData;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,40 +27,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DriverTasksListActivity extends AppCompatActivity {
+    UserData driverData;
     private RecyclerView recyclerView;
     List<TaskData> tasks;
     DatabaseReference tasksDatabaseReference;
     FirebaseDatabase  firebaseDatabase;
-    DatabaseReference driverNameDatabaseReference;
     FirebaseAuth firebaseAuth;
-    String driverName;
-    ValueEventListener nameEventListener;
     MyAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_task_list);
+        Intent intent = getIntent();
+        driverData = (UserData) intent.getSerializableExtra("current user");
+        Log.i("Driver name", driverData.getFirstName());
         recyclerView = findViewById(R.id.driver_task_list_recycler);
-
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayoutManager.VERTICAL));
         tasks = new ArrayList<>();
-
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
-        setNameListener();
-        driverNameDatabaseReference = FirebaseDatabase.getInstance().getReference("User");
-        driverNameDatabaseReference.addValueEventListener(nameEventListener);
         getDataFirebase();
         adapter = new MyAdapter(tasks);
-
-
-
-
     }
 
     private void getDataFirebase() {
@@ -71,11 +64,10 @@ public class DriverTasksListActivity extends AppCompatActivity {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     Log.i("Test task", ds.getValue(TaskData.class).toString());
                     TaskData task = ds.getValue(TaskData.class);
-                    tasks.add(task);
+                    if(driverData.getFirstName().equals(task.getDriver()))
+                        tasks.add(task);
                     recyclerView.setAdapter(adapter);
                 }
-
-
             }
 
             @Override
@@ -83,23 +75,8 @@ public class DriverTasksListActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
 
-
-
-    private void setNameListener() {
-        nameEventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                driverName = dataSnapshot.child(firebaseAuth.getUid()).child("firstName").getValue(String.class);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) { }
-        };
-    }
 
     public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
