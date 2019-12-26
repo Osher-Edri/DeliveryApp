@@ -22,6 +22,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -122,7 +124,7 @@ public class SelectTaskDriverActivity extends AppCompatActivity {
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder {
-            TextView order_date, area;
+            TextView order_date, area, edtFullName,edtPhoneNumber, edtOriginAddress, edtDestinationAddress, edtTransportDay, edtTransportDescription;
             Spinner driver_spinner =  itemView.findViewById(R.id.manager_spinner_select_driver);
             String taskKey;
             TaskData taskData;
@@ -151,6 +153,52 @@ public class SelectTaskDriverActivity extends AppCompatActivity {
 
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
+                    }
+                });
+                
+                order_date.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        View register_layout = LayoutInflater.from(SelectTaskDriverActivity.this)
+                                .inflate(R.layout.task_order_details, null);
+
+                        edtFullName = (TextView)register_layout.findViewById(R.id.edt_fullName);
+                        edtPhoneNumber = (TextView)register_layout.findViewById(R.id.edt_phone_number);
+                        edtOriginAddress = (TextView)register_layout.findViewById(R.id.edt_origin_address);
+                        edtDestinationAddress = (TextView)register_layout.findViewById(R.id.edt_destination_address);
+                        edtTransportDay = (TextView)register_layout.findViewById(R.id.edt_transport_day);
+                        edtTransportDescription = (TextView)register_layout.findViewById(R.id.edt_transport_description);
+
+                        new MaterialStyledDialog.Builder(SelectTaskDriverActivity.this)
+                                .setCustomView(register_layout)
+                                .show();
+
+                        databaseReference = FirebaseDatabase.getInstance().getReference("Tasks").child(taskKey);
+                        databaseReference.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                String contactFullName = dataSnapshot.child("contact_name").getValue(String.class);
+                                String contactPhoneNumber = dataSnapshot.child("contact_phone").getValue(String.class);
+                                String contactOriginAddress = dataSnapshot.child("originAddress").getValue(String.class);
+                                String contactDestinationAddress = dataSnapshot.child("address").getValue(String.class);
+                                String contactTransportDay = dataSnapshot.child("order_date").getValue(String.class);
+                                String contactTransportDescription = dataSnapshot.child("order_note").getValue(String.class);
+
+                                edtFullName.setText(contactFullName);
+                                edtPhoneNumber.setText(contactPhoneNumber);
+                                edtOriginAddress.setText(contactOriginAddress);
+                                edtDestinationAddress.setText(contactDestinationAddress);
+                                edtTransportDay.setText(contactTransportDay);
+                                edtTransportDescription.setText(contactTransportDescription);
+
+                            }
+                            
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
                     }
                 });
             }
