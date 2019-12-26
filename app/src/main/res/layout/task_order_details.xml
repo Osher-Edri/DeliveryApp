@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/edt_fullName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="XXX"
+        android:textSize="15dp"
+        android:gravity="center"
+        android:textColor="@android:color/black"/>
+
+    <TextView
+        android:id="@+id/edt_phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="XXX"
+        android:textSize="15dp"
+        android:gravity="center"
+        android:textColor="@android:color/black"/>
+    <TextView
+        android:id="@+id/edt_origin_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="XXX"
+        android:textSize="15dp"
+        android:gravity="center"
+        android:textColor="@android:color/black"/>
+    <TextView
+        android:id="@+id/edt_destination_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="XXX"
+        android:textSize="15dp"
+        android:gravity="center"
+        android:textColor="@android:color/black"/>
+    <TextView
+        android:id="@+id/edt_transport_day"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="XXX"
+        android:textSize="15dp"
+        android:gravity="center"
+        android:textColor="@android:color/black"/>
+    <TextView
+        android:id="@+id/edt_transport_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="XXX"
+        android:textSize="15dp"
+        android:gravity="center"
+        android:textColor="@android:color/black"/>
+
+
+
+
+</LinearLayout>
