@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import com.example.movingcompanymanagement.R;
 import com.example.movingcompanymanagement.modal.TaskData;
 import com.example.movingcompanymanagement.modal.UserData;
@@ -15,13 +16,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
+import java.util.Calendar;
+
 public class NewTaskActivity extends AppCompatActivity {
 
     private MaterialEditText mFullName, mArea, mDateOfTransport, mDestinationAddress, mOriginAddress, mPhoneNumber, mTransportDetails;
 
     private Button btn_submit;
     private DatabaseReference databaseReference;
-    UserData mangerUser;
+    private UserData mangerUser;
+    private DatePickerDialog datePickerDialog;
+    private Calendar calendar;
+    private int year, month, dayOfMonth;
+
 
 
     @Override
@@ -40,6 +47,25 @@ public class NewTaskActivity extends AppCompatActivity {
         mPhoneNumber = (MaterialEditText)findViewById(R.id.transport_phoneNumber);
         mTransportDetails = (MaterialEditText)findViewById(R.id.transport_transportDetails);
         mArea = (MaterialEditText)findViewById(R.id.transport_area);
+        
+        mDateOfTransport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calendar = Calendar.getInstance();
+                year = calendar.get(Calendar.YEAR);
+                month = calendar.get(Calendar.MONTH);
+                dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+                datePickerDialog = new DatePickerDialog(NewTaskActivity.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                                mDateOfTransport.setText(day + "/" + (month + 1) + "/" + year);
+                            }
+                        }, year, month, dayOfMonth);
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
+                datePickerDialog.show();
+            }
+        });
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Tasks");
 
