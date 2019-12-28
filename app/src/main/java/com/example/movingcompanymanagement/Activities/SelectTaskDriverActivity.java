@@ -171,6 +171,7 @@ public class SelectTaskDriverActivity extends AppCompatActivity {
 
                         new MaterialStyledDialog.Builder(SelectTaskDriverActivity.this)
                                 .setCustomView(register_layout)
+                                .withDarkerOverlay(true)
                                 .show();
 
                         databaseReference = FirebaseDatabase.getInstance().getReference("Tasks").child(taskKey);
