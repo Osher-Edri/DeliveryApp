@@ -11,8 +11,6 @@ public class TaskData {
     private String contact_name;
     private String contact_phone;
     private String driver;
-
-
     private String submit_by_user;
     private String status;
     private String order_note;//order details

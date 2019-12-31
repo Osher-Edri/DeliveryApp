@@ -26,7 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DriverTasksListActivity extends AppCompatActivity {
+public class DriverTasksListActivity extends BaseActivity {
     UserData driverData;
     private RecyclerView recyclerView;
     List<TaskData> tasks;

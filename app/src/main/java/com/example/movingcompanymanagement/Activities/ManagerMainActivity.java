@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.Serializable;
 
-public class ManagerMainActivity extends AppCompatActivity {
+public class ManagerMainActivity extends BaseActivity {
     UserData mangerUser;
 
     @Override
@@ -23,7 +23,7 @@ public class ManagerMainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         mangerUser = (UserData) intent.getSerializableExtra("current user");
-        Log.i("noam", mangerUser.getFirstName());
+       // Log.i("noam", mangerUser.getFirstName());
 
     }
     public void addWorker(View view){

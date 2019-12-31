@@ -35,7 +35,6 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference;
     //used to query the user's role
-    ValueEventListener roleEventListener;
     //the data of the current user
     UserData currentUser;
 

@@ -12,7 +12,7 @@ import com.example.movingcompanymanagement.R;
 import com.example.movingcompanymanagement.modal.UserData;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class DriverMainActivity extends AppCompatActivity {
+public class DriverMainActivity extends BaseActivity {
 
     UserData driverUser;
 

@@ -24,12 +24,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
-public class AddWorkerActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class AddWorkerActivity extends BaseActivity implements AdapterView.OnItemSelectedListener {
     MaterialEditText register_firstName,register_lastName,register_email,register_password,register_phoneNumber;
     ProgressBar register_progressBar;
     Spinner register_permission;
     Button register_btn;
     FirebaseAuth firebaseAuth;
+    //FirebaseAuth second = FirebaseAuth.
     DatabaseReference databaseReference;
     UserData userData;
     @Override
@@ -106,6 +107,7 @@ public class AddWorkerActivity extends AppCompatActivity implements AdapterView.
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
+                            userData.setId(firebaseAuth.getUid());
                             databaseReference.child(firebaseAuth.getUid()).setValue(userData);
                             Toast.makeText(AddWorkerActivity.this, "User Created.", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(),ManagerMainActivity.class));

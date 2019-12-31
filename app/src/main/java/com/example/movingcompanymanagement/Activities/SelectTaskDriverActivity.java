@@ -1,6 +1,7 @@
 package com.example.movingcompanymanagement.Activities;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.movingcompanymanagement.R;
 import com.example.movingcompanymanagement.modal.TaskData;
+import com.example.movingcompanymanagement.modal.UserData;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,14 +31,17 @@ import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SelectTaskDriverActivity extends AppCompatActivity {
+public class SelectTaskDriverActivity extends BaseActivity {
 
     private RecyclerView recyclerView;
     MyAdapter adapter;
     List<TaskData> tasks;
     DatabaseReference databaseReference;
     DatabaseReference getTaskReference;
-    ArrayList<String> drivers = new ArrayList<>();
+    FirebaseAuth firebaseAuth;
+    ArrayList<String> driverNames = new ArrayList<>();
+    ArrayList<UserData> drivers = new ArrayList<>();
+    ArrayList<DriverNameAndIDHolder> nameAndIDList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,23 +49,34 @@ public class SelectTaskDriverActivity extends AppCompatActivity {
         setContentView(R.layout.activity_manager_select_task_driver);
         recyclerView = findViewById(R.id.manager_task_list_recycler);
         recyclerView.setHasFixedSize(true);
+        firebaseAuth = FirebaseAuth.getInstance();
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayoutManager.VERTICAL));
         tasks = new ArrayList<>();
         adapter = new MyAdapter(tasks);
+        nameAndIDList = new ArrayList<>();
         databaseReference = FirebaseDatabase.getInstance().getReference("User");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                drivers.clear();
-                drivers.add("------");
+//                driverNames.clear();
+//                drivers.clear();
+                driverNames.add("------");
+                nameAndIDList.clear();
+                //when wanting to set driver to "null"
+                DriverNameAndIDHolder nullChoice= new DriverNameAndIDHolder("------", "------");
+                nameAndIDList.add(nullChoice);
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     String role = ds.child("role").getValue(String.class);
                     if (role.equals("Driver")) {
                         String name = ds.child("firstName").getValue(String.class);
-                        drivers.add(name);
+                        String ID = ds.child("id").getValue(String.class);
+                        DriverNameAndIDHolder nextDriver = new DriverNameAndIDHolder(name, ID);
+                        nameAndIDList.add(nextDriver);
+//                        driverNames.add(name);
+//                        drivers.add(tempDriver);
                     }
                 }
             }
@@ -80,7 +97,8 @@ public class SelectTaskDriverActivity extends AppCompatActivity {
                 tasks.clear();
                 for( DataSnapshot ds : dataSnapshot.getChildren() ){
                     TaskData data = ds.getValue(TaskData.class);
-                    tasks.add(data);
+                    if(data.getSubmit_by_user().equals(firebaseAuth.getUid()))
+                        tasks.add(data);
                     recyclerView.setAdapter(adapter);
                 }
             }
@@ -114,8 +132,17 @@ public class SelectTaskDriverActivity extends AppCompatActivity {
             holder.taskData = data;
             holder.order_date.setText(data.getOrder_date());
             holder.area.setText(data.getArea());
-            int driverNameIndex = holder.driverNamesAdapter.getPosition(data.getDriver());
-            holder.driver_spinner.setSelection(driverNameIndex, false);
+            String currentTaskDriverID = data.getDriver();
+            Log.i("Test driverID", currentTaskDriverID);
+            for(int index = 0; index < nameAndIDList.size(); index++){
+                DriverNameAndIDHolder temp = nameAndIDList.get(index);
+                if(temp.driverID.equals(currentTaskDriverID)) {
+                    holder.driver_spinner.setSelection(index, false);
+                    break;
+                }
+            }
+           // int driverNameIndex = holder.driverNamesAndIDs.getPosition(data.getDriver());
+
         }
 
         @Override
@@ -128,26 +155,38 @@ public class SelectTaskDriverActivity extends AppCompatActivity {
             Spinner driver_spinner =  itemView.findViewById(R.id.manager_spinner_select_driver);
             String taskKey;
             TaskData taskData;
-            ArrayAdapter<String> driverNamesAdapter;
+            ArrayAdapter<DriverNameAndIDHolder> driverNamesAndIDs;
 
 
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
                 order_date = itemView.findViewById(R.id.manager_date);
                 area = itemView.findViewById(R.id.manager_area);
-                driverNamesAdapter = new ArrayAdapter<>(SelectTaskDriverActivity.this, android.R.layout.simple_spinner_dropdown_item, drivers);
-                driver_spinner.setAdapter(driverNamesAdapter);
+                driverNamesAndIDs = new ArrayAdapter<>(SelectTaskDriverActivity.this, android.R.layout.simple_spinner_dropdown_item, nameAndIDList);
+                driver_spinner.setAdapter(driverNamesAndIDs);
                 driver_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        String selected_d = parent.getItemAtPosition(position).toString();
-                        String driverName = taskData.getDriver();
-                        if(driverName != null && !driverName.equals(selected_d)) {
+                        DriverNameAndIDHolder selectedDriver =  (DriverNameAndIDHolder)parent.getItemAtPosition(position);
+//                        String selectedDriverName = ((DriverNameAndIDHolder)parent.getItemAtPosition(position)).driverName;
+//                        String selectedDriverID = ((DriverNameAndIDHolder)parent.getItemAtPosition(position)).driverID;
+                        String selectedDriverID = selectedDriver.driverID;
+                        String selectedDriverName = selectedDriver.driverName;
+                        Log.i("TestDriverIDOnSelected", selectedDriverID);
+                        String currentDriverID = taskData.getDriver();
+                        //UserData selectedDriver = drivers.get(position - 1);
+                        getTaskReference = FirebaseDatabase.getInstance().getReference("Tasks").child(taskKey);
+                        if(!selectedDriverName.equals("------") && !currentDriverID.equals(selectedDriverID)) {
+                            Log.i("Test task object", taskData.toString());
                             driver_spinner.setSelection(position);
-                            getTaskReference = FirebaseDatabase.getInstance().getReference("Tasks").child(taskKey);
-                            taskData.setDriver(selected_d);
-                            Toast.makeText(SelectTaskDriverActivity.this, "driver selected: " + selected_d, Toast.LENGTH_SHORT).show();
+                            taskData.setDriver(selectedDriverID);
+                            Toast.makeText(SelectTaskDriverActivity.this, "driver selected: " + selectedDriverName, Toast.LENGTH_SHORT).show();
                             getTaskReference.setValue(taskData);
+                        }
+                        else if(selectedDriverName.equals("------") && !selectedDriverName.equals(taskData.getDriver())){
+                            taskData.setDriver("------");
+                            getTaskReference.setValue(taskData);
+                            Toast.makeText(SelectTaskDriverActivity.this, "Driver selection removed", Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -203,6 +242,19 @@ public class SelectTaskDriverActivity extends AppCompatActivity {
                     }
                 });
             }
+        }
+    }
+    public class DriverNameAndIDHolder{
+        String driverName;
+        String driverID;
+        DriverNameAndIDHolder(String driverName, String driverID){
+            this.driverID = driverID;
+            this.driverName = driverName;
+        }
+
+        @Override
+        public String toString(){
+            return this.driverName;
         }
     }
 }

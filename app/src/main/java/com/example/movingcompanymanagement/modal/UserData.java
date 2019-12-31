@@ -10,6 +10,7 @@ public class UserData implements Serializable {
     private String password;
     private int phoneNumber;
     private String role;
+    private String id;
 
     public UserData(){
 
@@ -62,4 +63,8 @@ public class UserData implements Serializable {
     public String getRole(){
         return this.role;
     }
+
+    public String getId(){return this.id;}
+
+    public void setId(String id){this.id = id;}
 }

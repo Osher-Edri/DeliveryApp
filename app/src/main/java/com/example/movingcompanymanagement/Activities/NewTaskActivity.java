@@ -3,22 +3,25 @@ package com.example.movingcompanymanagement.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.widget.DatePicker;
+
 import com.example.movingcompanymanagement.R;
 import com.example.movingcompanymanagement.modal.TaskData;
 import com.example.movingcompanymanagement.modal.UserData;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.rengwuxian.materialedittext.MaterialEditText;
-
 import java.util.Calendar;
 
-public class NewTaskActivity extends AppCompatActivity {
+public class NewTaskActivity extends BaseActivity {
 
     private MaterialEditText mFullName, mArea, mDateOfTransport, mDestinationAddress, mOriginAddress, mPhoneNumber, mTransportDetails;
 
@@ -28,7 +31,7 @@ public class NewTaskActivity extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
     private Calendar calendar;
     private int year, month, dayOfMonth;
-
+    private FirebaseAuth firebaseAuth;
 
 
     @Override
@@ -39,7 +42,7 @@ public class NewTaskActivity extends AppCompatActivity {
         Intent intent = getIntent();
         mangerUser = (UserData) intent.getSerializableExtra("current user");
         Log.i("noam", mangerUser.getFirstName());
-
+        firebaseAuth = FirebaseAuth.getInstance();
         mFullName = (MaterialEditText)findViewById(R.id.transport_fullName);
         mDateOfTransport = (MaterialEditText)findViewById(R.id.transport_dateOfTransport);
         mDestinationAddress = (MaterialEditText)findViewById(R.id.transport_destinationAddress);
@@ -47,7 +50,7 @@ public class NewTaskActivity extends AppCompatActivity {
         mPhoneNumber = (MaterialEditText)findViewById(R.id.transport_phoneNumber);
         mTransportDetails = (MaterialEditText)findViewById(R.id.transport_transportDetails);
         mArea = (MaterialEditText)findViewById(R.id.transport_area);
-        
+
         mDateOfTransport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,7 +96,7 @@ public class NewTaskActivity extends AppCompatActivity {
                 newTask.setOrder_date(sDateOfTransport); 
                 newTask.setArea(sArea);
                 newTask.setDriver("------");
-                newTask.setSubmit_by_user(mangerUser.getFirstName());
+                newTask.setSubmit_by_user(firebaseAuth.getUid());
                 databaseReference = databaseReference.push();
                 databaseReference.setValue(newTask);
                 databaseReference.child("task_id").setValue(databaseReference.getKey());
