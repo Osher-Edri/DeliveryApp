@@ -1,7 +1,9 @@
 package com.example.movingcompanymanagement.modal;
 
 
-public class TaskData {
+import java.io.Serializable;
+
+public class TaskData implements Serializable {
 
     private String task_id;
     private String order_date;

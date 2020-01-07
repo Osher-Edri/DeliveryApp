@@ -96,7 +96,7 @@ public class NewTaskActivity extends BaseActivity {
                 newTask.setOrder_date(sDateOfTransport); 
                 newTask.setArea(sArea);
                 newTask.setDriver("------");
-                newTask.setStatus("✘");
+                newTask.setStatus("open");
                 newTask.setSubmit_by_user(firebaseAuth.getUid());
                 databaseReference = databaseReference.push();
                 databaseReference.setValue(newTask);

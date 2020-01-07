@@ -15,7 +15,7 @@
         <activity android:name=".Activities.DriverMainActivity"></activity>
         <activity android:name=".Activities.ManagerMainActivity" />
         <activity android:name=".Activities.NewTaskActivity" />
-        <activity android:name=".TaskTable" />
+        <activity android:name=".Activities.TaskDetailsActivity" />
         <activity android:name=".Activities.DriverTasksListActivity" />
         <activity android:name=".Activities.SelectTaskDriverActivity" />
         <activity android:name=".Activities.AddWorkerActivity" />
@@ -27,5 +27,7 @@
             </intent-filter>
         </activity>
     </application>
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
 </manifest>

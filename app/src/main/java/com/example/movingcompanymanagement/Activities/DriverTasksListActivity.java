@@ -64,7 +64,7 @@ public class DriverTasksListActivity extends BaseActivity {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     Log.i("Test task", ds.getValue(TaskData.class).toString());
                     TaskData task = ds.getValue(TaskData.class);
-                    if(driverData.getFirstName().equals(task.getDriver()))
+                    if(driverData.getId().equals(task.getDriver()))
                         tasks.add(task);
                     recyclerView.setAdapter(adapter);
                 }
