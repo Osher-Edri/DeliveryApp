@@ -20,16 +20,16 @@ public class DriverMainActivity extends DriverBaseActivity {
         setContentView(R.layout.activity_driver_main);
         Intent intent = getIntent();
         driverUser = (UserData) intent.getSerializableExtra("current user");
-        Log.i("Driver name", driverUser.getFirstName());
     }
 
-
+    // todo - filter only current date activity
     public void AllTaskList(View view) {
         Intent intent = new Intent(getApplicationContext(), DriverTasksListActivity.class);
         intent.putExtra("current user", driverUser);
         startActivity(intent);
     }
 
+    // todo - all tasks (include close??)
     public void todayTasks(View view) {
         Intent intent = new Intent(getApplicationContext(), DriverTasksListActivity.class);
         intent.putExtra("current user", driverUser);

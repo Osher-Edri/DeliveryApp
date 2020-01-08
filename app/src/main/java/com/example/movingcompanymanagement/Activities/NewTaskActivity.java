@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.rengwuxian.materialedittext.MaterialEditText;
 import java.util.Calendar;
+import java.util.Date;
 
 public class NewTaskActivity extends MangerBaseActivity {
 
@@ -95,6 +96,7 @@ public class NewTaskActivity extends MangerBaseActivity {
                 newTask.setArea(sArea);
                 newTask.setDriver("------");
                 newTask.setStatus("open");
+//                newTask.setOrder_date(new Date());
                 newTask.setSubmit_by_user(firebaseAuth.getUid());
                 databaseReference = databaseReference.push();
                 databaseReference.setValue(newTask);
