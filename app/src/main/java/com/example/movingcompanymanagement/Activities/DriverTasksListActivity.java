@@ -15,6 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.example.movingcompanymanagement.R;
+import com.example.movingcompanymanagement.modal.AreaComparator;
+import com.example.movingcompanymanagement.modal.DateComparator;
+import com.example.movingcompanymanagement.modal.TaskChainedComparator;
 import com.example.movingcompanymanagement.modal.TaskData;
 import com.example.movingcompanymanagement.modal.UserData;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,6 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class DriverTasksListActivity extends DriverBaseActivity {
@@ -89,6 +93,8 @@ public class DriverTasksListActivity extends DriverBaseActivity {
                     }
                 }
             }
+            TaskChainedComparator chainComparator = new TaskChainedComparator(new DateComparator(), new AreaComparator());
+            Collections.sort(tasks, chainComparator );
             recyclerView.setAdapter(adapter);
         }
 
