@@ -57,25 +57,27 @@ public class DriverTasksListActivity extends BaseActivity {
 
     private void getDataFirebase() {
         tasksDatabaseReference = FirebaseDatabase.getInstance().getReference("Tasks");
-        tasksDatabaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                tasks.clear();
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    Log.i("Test task", ds.getValue(TaskData.class).toString());
-                    TaskData task = ds.getValue(TaskData.class);
-                    if(driverData.getId().equals(task.getDriver()))
-                        tasks.add(task);
-                    recyclerView.setAdapter(adapter);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+        tasksDatabaseReference.addValueEventListener(valueEventListener);
     }
+
+    ValueEventListener valueEventListener = new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            tasks.clear();
+            for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                Log.i("Test task", ds.getValue(TaskData.class).toString());
+                TaskData task = ds.getValue(TaskData.class);
+                if(driverData.getId().equals(task.getDriver()))
+                    tasks.add(task);
+                recyclerView.setAdapter(adapter);
+            }
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+        }
+    };
 
 
     public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {

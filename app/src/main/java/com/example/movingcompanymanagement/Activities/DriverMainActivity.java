@@ -1,11 +1,16 @@
 package com.example.movingcompanymanagement.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 
 import com.example.movingcompanymanagement.R;
@@ -24,15 +29,17 @@ public class DriverMainActivity extends BaseActivity {
         driverUser = (UserData) intent.getSerializableExtra("current user");
         Log.i("Driver name", driverUser.getFirstName());
     }
-    public void tasksList(View view){
-        Intent intent = new Intent(getApplicationContext(),DriverTasksListActivity.class);
+
+
+    public void tasksList(View view) {
+        Intent intent = new Intent(getApplicationContext(), DriverTasksListActivity.class);
         intent.putExtra("current user", driverUser);
         startActivity(intent);
     }
 
-    public void logout(View view){
+    public void logout(View view) {
         FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
         finish();
     }
 }

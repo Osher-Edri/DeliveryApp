@@ -21,6 +21,7 @@ public class ManagerMainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager_main);
 
+
         Intent intent = getIntent();
         mangerUser = (UserData) intent.getSerializableExtra("current user");
        // Log.i("noam", mangerUser.getFirstName());

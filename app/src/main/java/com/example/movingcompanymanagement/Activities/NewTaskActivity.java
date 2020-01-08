@@ -38,6 +38,8 @@ public class NewTaskActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager_new_task);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         Intent intent = getIntent();
         mangerUser = (UserData) intent.getSerializableExtra("current user");
@@ -93,7 +95,7 @@ public class NewTaskActivity extends BaseActivity {
                 newTask.setOriginAddress(sOriginAddress);
                 newTask.setContact_phone(sPhoneNumber);
                 newTask.setOrder_note(sTransportDetails);
-                newTask.setOrder_date(sDateOfTransport); 
+                newTask.setTask_date(sDateOfTransport);
                 newTask.setArea(sArea);
                 newTask.setDriver("------");
                 newTask.setStatus("open");

@@ -100,21 +100,22 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 currentUser = dataSnapshot.child(firebaseAuth.getUid()).getValue(UserData.class);
-                Toast.makeText(LoginActivity.this, currentUser.getFirstName() + " Logged in SuccessFully", Toast.LENGTH_LONG).show();
+                if (currentUser != null) {
+                    Toast.makeText(LoginActivity.this, currentUser.getFirstName() + " Logged in Successfully", Toast.LENGTH_LONG).show();
+                    if (currentUser.getRole().equals("Manager")) {
+                        Log.i("noam", "manger");
+                        Intent i = new Intent(getApplicationContext(), ManagerMainActivity.class);
+                        i.putExtra("current user", currentUser);
+                        startActivity(i);
+                    }
+                    if (currentUser.getRole().equals("Driver")) {
+                        Log.i("noam", "driver");
+                        Intent i = new Intent(getApplicationContext(), DriverMainActivity.class);
+                        i.putExtra("current user", currentUser);
+                        startActivity(i);
+                    }
 
-                if (currentUser.getRole().equals("Manager")) {
-                    Log.i("noam", "manger");
-                    Intent i = new Intent(getApplicationContext(), ManagerMainActivity.class);
-                    i.putExtra("current user", currentUser);
-                    startActivity(i);
                 }
-                if (currentUser.getRole().equals("Driver")) {
-                    Log.i("noam", "driver");
-                    Intent i = new Intent(getApplicationContext(), DriverMainActivity.class);
-                    i.putExtra("current user", currentUser);
-                    startActivity(i);
-                }
-
 
             }
 

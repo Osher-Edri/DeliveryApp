@@ -37,6 +37,8 @@ public class AddWorkerActivity extends BaseActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_worker);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         register_firstName =  findViewById(R.id.addWorker_firstName);
         register_lastName = findViewById(R.id.addWorker_lastName);
         register_email = findViewById(R.id.addWorker_email);

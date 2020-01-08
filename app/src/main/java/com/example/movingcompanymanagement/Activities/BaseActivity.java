@@ -1,5 +1,6 @@
 package com.example.movingcompanymanagement.Activities;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -9,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.movingcompanymanagement.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -30,7 +32,11 @@ public class BaseActivity extends AppCompatActivity {
                 Toast.makeText(this, "You selected item 2", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.logout:
-                Toast.makeText(this, "You selected: Logout", Toast.LENGTH_SHORT).show();
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                finish();
+            case android.R.id.home: // back arrow prresed
+                onBackPressed();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
