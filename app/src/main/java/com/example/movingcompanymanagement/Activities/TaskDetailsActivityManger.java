@@ -31,14 +31,10 @@ import java.util.ArrayList;
 public class TaskDetailsActivityManger extends MangerBaseActivity {
     private TextView edtFullName, edtPhoneNumber, edtOriginAddress, edtDestinationAddress, edtTransportDay, edtTransportDescription, edtstatus;
     TaskData taskDetails;
-    ImageView icPhone, icEditing;
-    DatabaseReference databaseReference;
-    AlertDialog dialog;
     EditText taskNote;
     Spinner spinnerStatus;
     DatabaseReference getStatusReference;
     Button btnSubmitStatus;
-    ArrayList<String> drivers = new ArrayList<>();
     RadioGroup taskStatus;
     RadioButton checkedRadioButton, radioButtonOpen, radioButtonClose, radioButtonProblem;
     private static final int REQUEST_CALL = 1;

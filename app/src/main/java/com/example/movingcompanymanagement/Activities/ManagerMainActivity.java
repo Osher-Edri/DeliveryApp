@@ -23,12 +23,14 @@ public class ManagerMainActivity extends MangerBaseActivity {
     public void selectTaskDriver(View view){
         Intent i = new Intent(getApplicationContext(), SelectTaskDriverActivity.class);
         i.putExtra("current user", mangerUser);
+        i.putExtra("filter", "open");
         startActivity(i);
     }
     // todo - filter failed tasks
     public void showFailedTasks(View view) {
         Intent i = new Intent(getApplicationContext(), SelectTaskDriverActivity.class);
         i.putExtra("current user", mangerUser);
+        i.putExtra("filter", "problem");
         startActivity(i);
     }
 
@@ -36,6 +38,7 @@ public class ManagerMainActivity extends MangerBaseActivity {
     public void showCompletedTasks(View view) {
         Intent i = new Intent(getApplicationContext(), SelectTaskDriverActivity.class);
         i.putExtra("current user", mangerUser);
+        i.putExtra("filter", "close");
         startActivity(i);
     }
 }

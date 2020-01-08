@@ -8,8 +8,10 @@ public class DateComparator implements Comparator<TaskData> {
 
     @Override
     public int compare(TaskData task1, TaskData task2) {
-        Log.i("sort", task1.getTask_date());
-        Log.i("sort", task2.getTask_date());
-        return task1.getTask_date().compareTo(task2.getTask_date());
+        if(task1.getTaskYear() != task2.getTaskYear())
+            return task1.getTaskYear() - task2.getTaskYear();
+        else if(task1.getTaskMonth() != task2.getTaskMonth())
+            return task1.getTaskMonth() - task2.getTaskMonth();
+        return task1.getTaskDay() - task2.getTaskDay();
     }
 }

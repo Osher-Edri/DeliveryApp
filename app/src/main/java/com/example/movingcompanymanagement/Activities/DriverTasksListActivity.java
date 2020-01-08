@@ -1,12 +1,13 @@
 package com.example.movingcompanymanagement.Activities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,6 +23,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,16 +36,19 @@ public class DriverTasksListActivity extends DriverBaseActivity {
     FirebaseDatabase  firebaseDatabase;
     FirebaseAuth firebaseAuth;
     MyAdapter adapter;
+    String filter_;
+    LocalDateTime now;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_task_list);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         Intent intent = getIntent();
         driverData = (UserData) intent.getSerializableExtra("current user");
-        Log.i("Driver name", driverData.getFirstName());
+        filter_ = (String) intent.getSerializableExtra("filter");
+        now = LocalDateTime.now();
         recyclerView = findViewById(R.id.driver_task_list_recycler);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -62,16 +68,28 @@ public class DriverTasksListActivity extends DriverBaseActivity {
     }
 
     ValueEventListener valueEventListener = new ValueEventListener() {
+        @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
             tasks.clear();
+
             for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                Log.i("Test task", ds.getValue(TaskData.class).toString());
                 TaskData task = ds.getValue(TaskData.class);
-                if(driverData.getId().equals(task.getDriver()))
-                    tasks.add(task);
-                recyclerView.setAdapter(adapter);
+
+                if(driverData.getId().equals(task.getDriver())) {
+                    if (filter_.equals("today")) {
+                            int day = now.getDayOfMonth();
+                            int month = now.getMonthValue();
+                            int year = now.getYear();
+                            if(task.getTaskMonth() == month && task.getTaskYear() == year && task.getTaskDay() == day)
+                                tasks.add(task);
+                    }
+                    else{
+                        tasks.add(task);
+                    }
+                }
             }
+            recyclerView.setAdapter(adapter);
         }
 
         @Override

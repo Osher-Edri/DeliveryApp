@@ -19,7 +19,9 @@ public class TaskData implements Serializable {
     private String driver_note;
     private String originAddress;
     private String area;
-
+    private int taskDay;
+    private int taskMonth;
+    private int taskYear;
 
     public TaskData() {
     }
@@ -40,6 +42,30 @@ public class TaskData implements Serializable {
         this.status = status;
         this.order_note = order_note;
         this.driver_note = driver_note;
+    }
+
+    public void setTaskDay(int taskDay) {
+        this.taskDay = taskDay;
+    }
+
+    public void setTaskMonth(int taskMonth) {
+        this.taskMonth = taskMonth;
+    }
+
+    public void setTaskYear(int taskYear) {
+        this.taskYear = taskYear;
+    }
+
+    public int getTaskMonth() {
+        return taskMonth;
+    }
+
+    public int getTaskYear() {
+        return taskYear;
+    }
+
+    public int getTaskDay() {
+        return taskDay;
     }
 
     public String getTask_id() {

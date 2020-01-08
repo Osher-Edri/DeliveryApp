@@ -29,6 +29,7 @@ public class NewTaskActivity extends MangerBaseActivity {
     private Calendar calendar;
     private int year, month, dayOfMonth;
     private FirebaseAuth firebaseAuth;
+    private int taskDay, taskMonth, taskYear;
 
 
     @Override
@@ -36,19 +37,17 @@ public class NewTaskActivity extends MangerBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager_new_task);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
         Intent intent = getIntent();
         mangerUser = (UserData) intent.getSerializableExtra("current user");
         Log.i("noam", mangerUser.getFirstName());
         firebaseAuth = FirebaseAuth.getInstance();
-        mFullName = (MaterialEditText)findViewById(R.id.transport_fullName);
-        mDateOfTransport = (MaterialEditText)findViewById(R.id.transport_dateOfTransport);
-        mDestinationAddress = (MaterialEditText)findViewById(R.id.transport_destinationAddress);
-        mOriginAddress = (MaterialEditText)findViewById(R.id.transport_originAddress);
-        mPhoneNumber = (MaterialEditText)findViewById(R.id.transport_phoneNumber);
-        mTransportDetails = (MaterialEditText)findViewById(R.id.transport_transportDetails);
-        mArea = (MaterialEditText)findViewById(R.id.transport_area);
+        mFullName = findViewById(R.id.transport_fullName);
+        mDateOfTransport = findViewById(R.id.transport_dateOfTransport);
+        mDestinationAddress = findViewById(R.id.transport_destinationAddress);
+        mOriginAddress = findViewById(R.id.transport_originAddress);
+        mPhoneNumber = findViewById(R.id.transport_phoneNumber);
+        mTransportDetails =findViewById(R.id.transport_transportDetails);
+        mArea = findViewById(R.id.transport_area);
 
         mDateOfTransport.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +61,9 @@ public class NewTaskActivity extends MangerBaseActivity {
                             @Override
                             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                                 mDateOfTransport.setText(day + "/" + (month + 1) + "/" + year);
+                                taskDay = datePicker.getDayOfMonth();
+                                taskMonth = datePicker.getMonth() + 1;
+                                taskYear =datePicker.getYear();
                             }
                         }, year, month, dayOfMonth);
                 datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
@@ -83,10 +85,7 @@ public class NewTaskActivity extends MangerBaseActivity {
                 String sPhoneNumber = mPhoneNumber.getText().toString();
                 String sTransportDetails = mTransportDetails.getText().toString();
                 String sArea = mArea.getText().toString();
-
-
                 TaskData newTask = new TaskData();
-
                 newTask.setContact_name(sFullName);
                 newTask.setAddress(sDestinationAddress);
                 newTask.setOriginAddress(sOriginAddress);
@@ -96,7 +95,9 @@ public class NewTaskActivity extends MangerBaseActivity {
                 newTask.setArea(sArea);
                 newTask.setDriver("------");
                 newTask.setStatus("open");
-//                newTask.setOrder_date(new Date());
+                newTask.setTaskYear(taskYear);
+                newTask.setTaskDay(taskDay);
+                newTask.setTaskMonth(taskMonth);
                 newTask.setSubmit_by_user(firebaseAuth.getUid());
                 databaseReference = databaseReference.push();
                 databaseReference.setValue(newTask);

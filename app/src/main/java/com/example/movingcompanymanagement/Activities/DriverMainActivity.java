@@ -26,6 +26,7 @@ public class DriverMainActivity extends DriverBaseActivity {
     public void AllTaskList(View view) {
         Intent intent = new Intent(getApplicationContext(), DriverTasksListActivity.class);
         intent.putExtra("current user", driverUser);
+        intent.putExtra("filter", "all");
         startActivity(intent);
     }
 
@@ -33,6 +34,7 @@ public class DriverMainActivity extends DriverBaseActivity {
     public void todayTasks(View view) {
         Intent intent = new Intent(getApplicationContext(), DriverTasksListActivity.class);
         intent.putExtra("current user", driverUser);
+        intent.putExtra("filter", "today");
         startActivity(intent);
     }
 
