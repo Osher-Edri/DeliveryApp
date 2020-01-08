@@ -19,7 +19,7 @@
         <activity android:name=".Activities.DriverMainActivity" />
         <activity android:name=".Activities.ManagerMainActivity" />
         <activity android:name=".Activities.NewTaskActivity" />
-        <activity android:name=".Activities.TaskDetailsActivity" />
+        <activity android:name=".Activities.TaskDetailsActivityManger" />
         <activity android:name=".Activities.DriverTasksListActivity" />
         <activity android:name=".Activities.SelectTaskDriverActivity" />
         <activity android:name=".Activities.AddWorkerActivity" />

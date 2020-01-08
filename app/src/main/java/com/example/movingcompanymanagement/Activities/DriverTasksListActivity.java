@@ -25,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DriverTasksListActivity extends BaseActivity {
+public class DriverTasksListActivity extends DriverBaseActivity {
     UserData driverData;
     private RecyclerView recyclerView;
     List<TaskData> tasks;
@@ -124,7 +124,7 @@ public class DriverTasksListActivity extends BaseActivity {
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(getApplicationContext(), TaskDetailsActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), TaskDetailsActivityManger.class);
                         intent.putExtra("current data", taskData);
                         startActivity(intent);
                     }

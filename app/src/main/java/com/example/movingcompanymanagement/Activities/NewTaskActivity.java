@@ -3,11 +3,8 @@ package com.example.movingcompanymanagement.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.widget.DatePicker;
@@ -21,13 +18,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.rengwuxian.materialedittext.MaterialEditText;
 import java.util.Calendar;
 
-public class NewTaskActivity extends BaseActivity {
+public class NewTaskActivity extends MangerBaseActivity {
 
     private MaterialEditText mFullName, mArea, mDateOfTransport, mDestinationAddress, mOriginAddress, mPhoneNumber, mTransportDetails;
 
     private Button btn_submit;
     private DatabaseReference databaseReference;
-    private UserData mangerUser;
     private DatePickerDialog datePickerDialog;
     private Calendar calendar;
     private int year, month, dayOfMonth;

@@ -1,7 +1,6 @@
 package com.example.movingcompanymanagement.Activities;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,7 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
-public class AddWorkerActivity extends BaseActivity implements AdapterView.OnItemSelectedListener {
+public class AddWorkerActivity extends MangerBaseActivity implements AdapterView.OnItemSelectedListener {
     MaterialEditText register_firstName,register_lastName,register_email,register_password,register_phoneNumber;
     ProgressBar register_progressBar;
     Spinner register_permission;
@@ -38,6 +37,10 @@ public class AddWorkerActivity extends BaseActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_worker);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Intent intent = getIntent();
+        mangerUser = (UserData) intent.getSerializableExtra("current user");
+
 
         register_firstName =  findViewById(R.id.addWorker_firstName);
         register_lastName = findViewById(R.id.addWorker_lastName);
@@ -112,7 +115,7 @@ public class AddWorkerActivity extends BaseActivity implements AdapterView.OnIte
                             userData.setId(firebaseAuth.getUid());
                             databaseReference.child(firebaseAuth.getUid()).setValue(userData);
                             Toast.makeText(AddWorkerActivity.this, "User Created.", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),ManagerMainActivity.class));
+                            startActivity(new Intent(getApplicationContext(), ManagerMainActivity.class));
                         }
                         else{
                             Toast.makeText(AddWorkerActivity.this, "Error !" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();

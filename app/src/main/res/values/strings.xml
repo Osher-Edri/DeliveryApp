@@ -5,7 +5,6 @@
     <string name="create_new_account">Create New Account</string>
     <string name="first_name">First Name</string>
     <string name="name">Name</string>
-    <string name="logout">Logout</string>
     <string name="permission">Permission</string>
     <string name="manager">Manager</string>
     <string name="driver">Driver</string>
@@ -26,4 +25,11 @@
     <string name="title_notifications">Notifications</string>
     <string name="area">Area</string>
     <string name="date">Date</string>
+    <string name="new_task">New task</string>
+    <string name="new_worker">New worker</string>
+    <string name="logout">Logout</string>
+    <string name="all_task_list">All Task List</string>
+    <string name="today_tasks">Today tasks</string>
+    <string name="failed_tasks">Failed tasks</string>
+    <string name="completed_tasks">Completed tasks</string>
 </resources>

@@ -5,19 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activities.ManagerMainActivity">
+    tools:context=".Activities.DriverMainActivity">
     <Button
-        android:id="@+id/btn_tasksList"
+        android:id="@+id/btn_all_task_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:onClick="tasksList"
-        android:text="@string/tasksList" />
+        android:onClick="AllTaskList"
+        android:text="@string/all_task_list" />
+
     <Button
-        android:id="@+id/btn_logOut"
+        android:id="@+id/btn_today_task_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:onClick="logout"
-        android:text="@string/logout" />
+        android:onClick="todayTasks"
+        android:text="@string/today_tasks" />
+
 </LinearLayout>

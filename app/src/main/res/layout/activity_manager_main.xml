@@ -7,33 +7,31 @@
     android:orientation="vertical"
     tools:context=".Activities.ManagerMainActivity">
 
+
     <Button
-    android:id="@+id/btn_addWorker"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_weight="1"
-    android:onClick="addWorker"
-    android:text="@string/addWorker" />
-    <Button
-        android:id="@+id/btn_newTask"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:onClick="newTask"
-        android:text="@string/newTask" />
-    <Button
-        android:id="@+id/btn_taskDetails"
+        android:id="@+id/btn_select_driver"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:onClick="selectTaskDriver"
         android:text="@string/selectTaskDriver" />
+
     <Button
-        android:id="@+id/btn_logOut"
+        android:id="@+id/btn_failed_tasks"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:onClick="logout"
-        android:text="@string/logout" />
+        android:onClick="showFailedTasks"
+        android:text="@string/failed_tasks" />
+
+    <Button
+        android:id="@+id/btn_completed_tasks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:onClick="showCompletedTasks"
+        android:text="@string/completed_tasks" />
+
+
 
 </LinearLayout>

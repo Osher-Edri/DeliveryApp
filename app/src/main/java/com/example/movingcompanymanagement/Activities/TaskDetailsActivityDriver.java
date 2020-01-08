@@ -2,41 +2,33 @@ package com.example.movingcompanymanagement.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.movingcompanymanagement.R;
 import com.example.movingcompanymanagement.modal.TaskData;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class TaskDetailsActivity extends BaseActivity {
+public class TaskDetailsActivityDriver extends MangerBaseActivity {
     private TextView edtFullName, edtPhoneNumber, edtOriginAddress, edtDestinationAddress, edtTransportDay, edtTransportDescription, edtstatus;
     TaskData taskDetails;
     ImageView icPhone, icEditing;
@@ -106,15 +98,15 @@ public class TaskDetailsActivity extends BaseActivity {
         String number = taskDetails.getContact_phone();
 
         if(number.trim().length()>0){
-            if(ContextCompat.checkSelfPermission(TaskDetailsActivity.this, Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED){
-                ActivityCompat.requestPermissions(TaskDetailsActivity.this, new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL);
+            if(ContextCompat.checkSelfPermission(TaskDetailsActivityDriver.this, Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED){
+                ActivityCompat.requestPermissions(TaskDetailsActivityDriver.this, new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL);
 
             }else{
                 String dial = "tel:" + number;
                 startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
             }
         }else{
-            Toast.makeText(TaskDetailsActivity.this, "NO PHONE NUMBER", Toast.LENGTH_SHORT).show();
+            Toast.makeText(TaskDetailsActivityDriver.this, "NO PHONE NUMBER", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -152,6 +144,6 @@ public class TaskDetailsActivity extends BaseActivity {
         taskDetails.setStatus(checkedRadioButton.getText().toString());
         taskDetails.setDriver_note(note);
         getStatusReference.setValue(taskDetails);
-        Toast.makeText(TaskDetailsActivity.this, "Task details update", Toast.LENGTH_SHORT).show();
+        Toast.makeText(TaskDetailsActivityDriver.this, "Task details update", Toast.LENGTH_SHORT).show();
     }
 }

@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class SelectTaskDriverActivity extends BaseActivity {
+public class SelectTaskDriverActivity extends MangerBaseActivity {
 
     private RecyclerView recyclerView;
     MyAdapter adapter;
@@ -208,7 +208,7 @@ public class SelectTaskDriverActivity extends BaseActivity {
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(getApplicationContext(), TaskDetailsActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), TaskDetailsActivityManger.class);
                         intent.putExtra("current data", taskData);
                         startActivity(intent);
                     }
