@@ -56,6 +56,8 @@ public class TaskDetailsActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.task_order_details);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         Intent intent = getIntent();
         taskDetails = (TaskData) intent.getSerializableExtra("current data");
@@ -78,7 +80,7 @@ public class TaskDetailsActivity extends BaseActivity {
         edtPhoneNumber.setText(taskDetails.getContact_phone());
         edtOriginAddress.setText(taskDetails.getOriginAddress());
         edtDestinationAddress.setText(taskDetails.getAddress());
-        edtTransportDay.setText(taskDetails.getOrder_date());
+        edtTransportDay.setText(taskDetails.getTask_date());
         edtTransportDescription.setText(taskDetails.getOrder_note());
         taskNote.setText(taskDetails.getDriver_note());
         setCurrentStatus();
@@ -94,6 +96,10 @@ public class TaskDetailsActivity extends BaseActivity {
                 makePhoneCall();
             }
         });
+
+
+
+
     }
 
     private void makePhoneCall() {

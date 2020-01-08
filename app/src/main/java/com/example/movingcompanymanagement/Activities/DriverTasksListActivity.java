@@ -1,7 +1,6 @@
 package com.example.movingcompanymanagement.Activities;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -39,6 +38,8 @@ public class DriverTasksListActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_task_list);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Intent intent = getIntent();
         driverData = (UserData) intent.getSerializableExtra("current user");
         Log.i("Driver name", driverData.getFirstName());
@@ -100,7 +101,7 @@ public class DriverTasksListActivity extends BaseActivity {
             TaskData data = taskData.get(position);
             holder.taskKey = data.getTask_id();
             holder.taskData = data;
-            holder.date.setText(data.getOrder_date());
+            holder.task_date.setText(data.getTask_date());
             holder.area.setText(data.getArea());
         }
 
@@ -110,14 +111,24 @@ public class DriverTasksListActivity extends BaseActivity {
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder {
-            TextView date, area;
+            TextView task_date, area;
             String taskKey;
             TaskData taskData;
 
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
-                date =  itemView.findViewById(R.id.driver_date);
+                task_date =  itemView.findViewById(R.id.driver_date);
                 area =  itemView.findViewById(R.id.driver_area);
+
+                // open the task details by click
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getApplicationContext(), TaskDetailsActivity.class);
+                        intent.putExtra("current data", taskData);
+                        startActivity(intent);
+                    }
+                });
             }
         }
     }

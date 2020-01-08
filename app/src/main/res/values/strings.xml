@@ -20,4 +20,10 @@
     <string name="addWorker">Add Worker</string>
     <string name="selectTaskDriver">Select Task Driver</string>
     <string name="tasksList">Tasks List</string>
+    <string name="title_activity_nav_tasks">nav_tasks</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="area">Area</string>
+    <string name="date">Date</string>
 </resources>
