@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import android.app.DatePickerDialog;
@@ -35,6 +37,8 @@ public class NewTaskActivity extends MangerBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_manager_new_task);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
@@ -48,6 +52,13 @@ public class NewTaskActivity extends MangerBaseActivity {
         mPhoneNumber = findViewById(R.id.transport_phoneNumber);
         mTransportDetails =findViewById(R.id.transport_transportDetails);
         mArea = findViewById(R.id.transport_area);
+
+        //remov title bar
+        try
+        {
+            this.getSupportActionBar().hide();
+        }
+        catch (NullPointerException e){}
 
         mDateOfTransport.setOnClickListener(new View.OnClickListener() {
             @Override

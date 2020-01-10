@@ -13,9 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".Activities.nav_tasks"
-            android:label="@string/title_activity_nav_tasks"></activity>
+<!--        <activity-->
+<!--            android:name=".Activities.nav_tasks"-->
+<!--            android:label="@string/title_activity_nav_tasks"></activity>-->
         <activity android:name=".Activities.DriverMainActivity" />
         <activity android:name=".Activities.ManagerMainActivity" />
         <activity android:name=".Activities.NewTaskActivity" />
