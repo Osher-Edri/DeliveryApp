@@ -52,14 +52,6 @@ public class NewTaskActivity extends MangerBaseActivity {
         mPhoneNumber = findViewById(R.id.transport_phoneNumber);
         mTransportDetails =findViewById(R.id.transport_transportDetails);
         mArea = findViewById(R.id.transport_area);
-
-        //remov title bar
-        try
-        {
-            this.getSupportActionBar().hide();
-        }
-        catch (NullPointerException e){}
-
         mDateOfTransport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,6 +80,7 @@ public class NewTaskActivity extends MangerBaseActivity {
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                TaskData newTask = new TaskData();
 
                 String sFullName = mFullName.getText().toString();
                 String sDateOfTransport = mDateOfTransport.getText().toString();
@@ -96,7 +89,7 @@ public class NewTaskActivity extends MangerBaseActivity {
                 String sPhoneNumber = mPhoneNumber.getText().toString();
                 String sTransportDetails = mTransportDetails.getText().toString();
                 String sArea = mArea.getText().toString();
-                TaskData newTask = new TaskData();
+
                 newTask.setContact_name(sFullName);
                 newTask.setAddress(sDestinationAddress);
                 newTask.setOriginAddress(sOriginAddress);
@@ -110,11 +103,12 @@ public class NewTaskActivity extends MangerBaseActivity {
                 newTask.setTaskDay(taskDay);
                 newTask.setTaskMonth(taskMonth);
                 newTask.setSubmit_by_user(firebaseAuth.getUid());
+
                 databaseReference = databaseReference.push();
                 databaseReference.setValue(newTask);
                 databaseReference.child("task_id").setValue(databaseReference.getKey());
 
-                finish(); //close Activity
+                finish();
             }
         });
     }

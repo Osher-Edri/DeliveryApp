@@ -53,17 +53,8 @@ public class TaskDetailsActivityDriver extends MangerBaseActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.task_order_details);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        //remov title bar
-        try
-        {
-            this.getSupportActionBar().hide();
-        }
-        catch (NullPointerException e){}
-
         Intent intent = getIntent();
         taskDetails = (TaskData) intent.getSerializableExtra("current data");
-
         btnSubmitStatus = findViewById(R.id.btn_submit_status);
         edtFullName = findViewById(R.id.edt_fullName);
         edtPhoneNumber = findViewById(R.id.edt_phone_number);

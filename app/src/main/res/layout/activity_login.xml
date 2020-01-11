@@ -22,20 +22,15 @@
             android:id="@+id/login_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
+            android:hint="  Enter Email"
             app:met_textColorHint="@android:color/white"
             android:inputType="textEmailAddress"
             android:fontFamily="cursive"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:drawableRight="@drawable/ic_mail_outline"
+            android:background="#07000000"
+            android:drawableLeft="@drawable/ic_mail_outline"
             android:theme="@style/ProgressBarStyle"/>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/username_text_input_layout"
-            app:passwordToggleEnabled="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </com.google.android.material.textfield.TextInputLayout>
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/login_password"
@@ -43,12 +38,12 @@
             android:layout_height="wrap_content"
             android:fontFamily="cursive"
             android:textStyle="bold"
-            android:hint="Password"
+            android:hint="  Enter Password"
             android:textSize="20sp"
             android:background="#07000000"
             app:met_textColorHint="@android:color/white"
             android:inputType="textPassword"
-            android:drawableRight="@drawable/ic_lock_outline"
+            android:drawableLeft="@drawable/ic_lock_outline"
             android:theme="@style/ProgressBarStyle"/>
 
         <ProgressBar

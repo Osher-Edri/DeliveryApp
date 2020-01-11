@@ -50,13 +50,6 @@ public class TaskDetailsActivityManger extends MangerBaseActivity {
         setContentView(R.layout.task_order_details);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //remov title bar
-        try
-        {
-            this.getSupportActionBar().hide();
-        }
-        catch (NullPointerException e){}
-
         Intent intent = getIntent();
         taskDetails = (TaskData) intent.getSerializableExtra("current data");
 

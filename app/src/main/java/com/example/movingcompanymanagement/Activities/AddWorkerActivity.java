@@ -42,12 +42,7 @@ public class AddWorkerActivity extends MangerBaseActivity implements AdapterView
         setContentView(R.layout.activity_add_worker);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //remov title bar
-        try
-        {
-            this.getSupportActionBar().hide();
-        }
-        catch (NullPointerException e){}
+        
         Intent intent = getIntent();
         mangerUser = (UserData) intent.getSerializableExtra("current user");
 

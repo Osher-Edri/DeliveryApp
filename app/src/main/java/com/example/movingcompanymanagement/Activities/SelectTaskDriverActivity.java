@@ -69,20 +69,10 @@ public class SelectTaskDriverActivity extends MangerBaseActivity {
         tasks = new ArrayList<>();
         adapter = new MyAdapter(tasks);
         nameAndIDList = new ArrayList<>();
-
-        //remov title bar
-        try
-        {
-            this.getSupportActionBar().hide();
-        }
-        catch (NullPointerException e){}
-
         databaseReference = FirebaseDatabase.getInstance().getReference("User");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                driverNames.clear();
-//                drivers.clear();
                 driverNames.add("------");
                 nameAndIDList.clear();
                 //when wanting to set driver to "null"
@@ -95,8 +85,6 @@ public class SelectTaskDriverActivity extends MangerBaseActivity {
                         String ID = ds.child("id").getValue(String.class);
                         DriverNameAndIDHolder nextDriver = new DriverNameAndIDHolder(name, ID);
                         nameAndIDList.add(nextDriver);
-//                        driverNames.add(name);
-//                        drivers.add(tempDriver);
                     }
                 }
             }
@@ -121,10 +109,8 @@ public class SelectTaskDriverActivity extends MangerBaseActivity {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
                     TaskData data = ds.getValue(TaskData.class);
-//                    if (data.getSubmit_by_user().equals(firebaseAuth.getUid()))  // Sapir requsts
                     if(data.getStatus().equals(filter_) || filter_.equals("all"))
                         tasks.add(data);
-
                 }
 
                 TaskChainedComparator chinComparator = new TaskChainedComparator(new DateComparator(), new AreaComparator());
