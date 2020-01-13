@@ -56,6 +56,8 @@ public class LoginActivity extends AppCompatActivity {
         login_progressBar = findViewById(R.id.login_progressBar);
         databaseReference = FirebaseDatabase.getInstance().getReference("User");
         firebaseAuth = FirebaseAuth.getInstance();
+        login_email.setTextColor(Color.WHITE);
+        login_password.setTextColor(Color.WHITE);
         setLoginListener();
 
 
@@ -65,15 +67,6 @@ public class LoginActivity extends AppCompatActivity {
             this.getSupportActionBar().hide();
         }
         catch (NullPointerException e){}
-
-//        View decorView = getWindow().getDecorView();
-//// Hide the status bar.
-//        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
-//        decorView.setSystemUiVisibility(uiOptions);
-//// Remember that you should never show the action bar if the
-//// status bar is hidden, so hide that too if necessary.
-//        ActionBar actionBar = getActionBar();
-//        actionBar.hide();
 
     }
 

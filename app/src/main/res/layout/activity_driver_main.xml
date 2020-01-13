@@ -5,21 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activities.DriverMainActivity">
+    tools:context=".Activities.DriverMainActivity"
+    android:background="@drawable/background_colour">
     <Button
         android:id="@+id/btn_all_task_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="30dp"
+        android:drawableLeft="@drawable/ic_completed_tasks"
+        android:gravity="center_vertical"
+        android:paddingStart="70dp"
         android:layout_weight="1"
         android:onClick="AllTaskList"
+        android:background="@drawable/button_capsule"
+        android:textColor="@color/my_blue"
         android:text="@string/all_task_list" />
 
     <Button
         android:id="@+id/btn_today_task_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_today_tasks"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="30dp"
+        android:gravity="center_vertical"
+        android:paddingStart="70dp"
         android:layout_weight="1"
         android:onClick="todayTasks"
+        android:background="@drawable/button_capsule"
+        android:textColor="@color/my_blue"
         android:text="@string/today_tasks" />
 
 </LinearLayout>

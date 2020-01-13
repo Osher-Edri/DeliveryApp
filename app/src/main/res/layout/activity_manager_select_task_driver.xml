@@ -4,7 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.SelectTaskDriverActivity">
+    tools:context=".Activities.SelectTaskDriverActivity"
+    android:background="@drawable/background_colour">
 
 <LinearLayout
     android:layout_width="match_parent"
@@ -16,7 +17,9 @@
         android:layout_weight="33.3"
         android:padding="15dp"
         android:textSize="15dp"
-        android:textColor="@android:color/holo_red_dark"
+        android:textStyle="bold"
+        android:textColor="#008f8f"
+        android:background="#edf2f2"
         android:text="Date"
         android:gravity="center"/>
 
@@ -28,7 +31,9 @@
         android:gravity="center"
         android:padding="15dp"
         android:text="Area"
-        android:textColor="@android:color/holo_red_dark"
+        android:textStyle="bold"
+        android:textColor="#008f8f"
+        android:background="#edf2f2"
         android:textSize="15dp" />
     <TextView
         android:id="@+id/txt_select_driver"
@@ -38,7 +43,9 @@
         android:gravity="center"
         android:padding="15dp"
         android:text="Select Driver"
-        android:textColor="@android:color/holo_red_dark"
+        android:textStyle="bold"
+        android:textColor="#008f8f"
+        android:background="#edf2f2"
         android:textSize="15dp" />
 </LinearLayout>
     

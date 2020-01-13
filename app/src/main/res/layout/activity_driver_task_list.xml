@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activities.DriverTasksListActivity">
+    tools:context=".Activities.DriverTasksListActivity"
+    android:background="@drawable/background_colour">
 
 
     <LinearLayout
@@ -19,7 +20,9 @@
             android:gravity="center"
             android:padding="15dp"
             android:text="@string/date"
-            android:textColor="@android:color/holo_red_dark"
+            android:textStyle="bold"
+            android:textColor="#008f8f"
+            android:background="#edf2f2"
             android:textSize="15sp" />
 
         <TextView
@@ -30,7 +33,9 @@
             android:gravity="center"
             android:padding="15dp"
             android:text="@string/area"
-            android:textColor="@android:color/holo_red_dark"
+            android:textStyle="bold"
+            android:textColor="#008f8f"
+            android:background="#edf2f2"
             android:textSize="15sp"
             />
     </LinearLayout>

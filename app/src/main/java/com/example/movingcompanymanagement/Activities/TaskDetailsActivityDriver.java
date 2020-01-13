@@ -51,7 +51,7 @@ public class TaskDetailsActivityDriver extends MangerBaseActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.task_order_details);
+        setContentView(R.layout.activity_task_order_details);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
         taskDetails = (TaskData) intent.getSerializableExtra("current data");

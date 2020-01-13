@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.NewTaskActivity">
+    tools:context=".Activities.NewTaskActivity"
+    android:background="@drawable/background_colour">
 
     <LinearLayout
         android:orientation="vertical"
-        android:background="@android:color/white"
+        android:background="@color/my_blue"
         android:layout_margin="16dp"
         android:padding="16dp"
         android:layout_width="match_parent"
@@ -20,35 +22,46 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:hint="Full Name"/>
+            android:hint="Full Name"
+            app:met_textColor="@color/my_white"
+            app:met_textColorHint="@color/my_white"
+            />
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/transport_phoneNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:hint="Phone Number"/>
+            android:hint="Phone Number"
+            app:met_textColor="@color/my_white"
+            app:met_textColorHint="@color/my_white"/>
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/transport_dateOfTransport"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:hint="Date Of Transport"/>
+            android:hint="Date Of Transport"
+            app:met_textColor="@color/my_white"
+            app:met_textColorHint="@color/my_white"/>
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/transport_destinationAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Destination Address"
-            android:inputType="text" />
+            android:inputType="text"
+            app:met_textColor="@color/my_white"
+            app:met_textColorHint="@color/my_white"/>
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/transport_originAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Origin Address"
-            android:inputType="text" />
+            android:inputType="text"
+            app:met_textColor="@color/my_white"
+            app:met_textColorHint="@color/my_white"/>
 
 
 
@@ -57,14 +70,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:hint="Transport Details"/>
+            android:hint="Transport Details"
+            app:met_textColor="@color/my_white"
+            app:met_textColorHint="@color/my_white"/>
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/transport_area"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:hint="Area"/>
+            android:hint="Area"
+            app:met_textColor="@color/my_white"
+            app:met_textColorHint="@color/my_white"/>
 
     </LinearLayout>
 
@@ -72,7 +89,9 @@
         android:id="@+id/btn_transport_submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Submit" />
+        android:text="Submit"
+        android:background="@drawable/button_capsule"
+        android:textColor="@color/my_blue"/>
 
 
 </LinearLayout>

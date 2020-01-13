@@ -1,7 +1,6 @@
 package com.example.movingcompanymanagement.Activities;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -15,7 +14,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -28,12 +26,10 @@ import com.example.movingcompanymanagement.modal.TaskData;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
-
 public class TaskDetailsActivityManger extends MangerBaseActivity {
     private TextView edtFullName, edtPhoneNumber, edtOriginAddress, edtDestinationAddress, edtTransportDay, edtTransportDescription, edtstatus;
     TaskData taskDetails;
-    EditText taskNote;
+    TextView taskNote;
     Spinner spinnerStatus;
     DatabaseReference getStatusReference;
     Button btnSubmitStatus;
@@ -47,7 +43,7 @@ public class TaskDetailsActivityManger extends MangerBaseActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.task_order_details);
+        setContentView(R.layout.activity_task_order_details);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();

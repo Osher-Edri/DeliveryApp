@@ -2,12 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
     tools:context=".Activities.LoginActivity"
-    android:background="@drawable/road">
+    android:background="@drawable/background_colour"
+    >
 
 
     <LinearLayout
@@ -16,7 +18,8 @@
         android:padding="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom">
+        android:layout_gravity="bottom"
+        >
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/login_email"
@@ -25,7 +28,7 @@
             android:hint="  Enter Email"
             app:met_textColorHint="@android:color/white"
             android:inputType="textEmailAddress"
-            android:fontFamily="cursive"
+            android:fontFamily="Arial"
             android:textSize="20sp"
             android:textStyle="bold"
             android:background="#07000000"
@@ -36,11 +39,11 @@
             android:id="@+id/login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="cursive"
+            android:fontFamily="Arial"
             android:textStyle="bold"
             android:hint="  Enter Password"
             android:textSize="20sp"
-            android:background="#07000000"
+            android:background="#cfd1d4"
             app:met_textColorHint="@android:color/white"
             android:inputType="textPassword"
             android:drawableLeft="@drawable/ic_lock_outline"
@@ -59,11 +62,11 @@
             android:layout_margin="16dp"
             android:text="Login"
             android:textSize="20sp"
-            android:textColor="@android:color/white"
+            android:textColor="@color/my_blue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#07000000"
-            android:fontFamily="cursive"
+            android:background="@drawable/button_capsule"
+            android:fontFamily="Arial"
             android:textStyle="bold"/>
 
     </LinearLayout>

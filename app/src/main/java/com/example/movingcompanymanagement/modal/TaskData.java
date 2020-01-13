@@ -9,7 +9,6 @@ public class TaskData implements Serializable {
     private String order_date;
     private String task_date;
     private String address;//destination address
-    private String region;
     private String contact_name;
     private String contact_phone;
     private String driver;
@@ -24,24 +23,6 @@ public class TaskData implements Serializable {
     private int taskYear;
 
     public TaskData() {
-    }
-
-    public TaskData(String task_id, String order_date, String task_date, String address, String region,
-                    String contact_name, String contact_phone, String driver, String submit_by_user , String status,
-                    String order_note, String driver_note) {
-
-        this.task_id = task_id;
-        this.order_date = order_date;
-        this.task_date = task_date;
-        this.address = address;
-        this.region = region;
-        this.contact_name = contact_name;
-        this.contact_phone = contact_phone;
-        this.driver = driver;
-        this.submit_by_user = submit_by_user;
-        this.status = status;
-        this.order_note = order_note;
-        this.driver_note = driver_note;
     }
 
     public void setTaskDay(int taskDay) {
@@ -72,17 +53,17 @@ public class TaskData implements Serializable {
         return task_id;
     }
 
-    public void setTask_id(String task_id) {
-        this.task_id = task_id;
-    }
-
-    public String getOrder_date() {
-        return order_date;
-    }
-
-    public void setOrder_date(String order_date) {
-        this.order_date = order_date;
-    }
+//    public void setTask_id(String task_id) {
+//        this.task_id = task_id;
+//    }
+//
+//    public String getOrder_date() {
+//        return order_date;
+//    }
+//
+//    public void setOrder_date(String order_date) {
+//        this.order_date = order_date;
+//    }
 
     public String getTask_date() {
         return task_date;
@@ -100,13 +81,13 @@ public class TaskData implements Serializable {
         this.address = address;
     }
 
-    public String getRegion() {
-        return region;
-    }
-
-    public void setRegion(String region) {
-        this.region = region;
-    }
+//    public String getRegion() {
+//        return region;
+//    }
+//
+//    public void setRegion(String region) {
+//        this.region = region;
+//    }
 
     public String getContact_name() {
         return contact_name;
@@ -169,7 +150,6 @@ public class TaskData implements Serializable {
                 ", order_date=" + order_date +
                 ", task_date=" + task_date +
                 ", address='" + address + '\'' +
-                ", region='" + region + '\'' +
                 ", contact_name='" + contact_name + '\'' +
                 ", contact_phone='" + contact_phone + '\'' +
                 ", driver='" + driver + '\'' +

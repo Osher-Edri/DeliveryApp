@@ -2,6 +2,8 @@ package com.example.movingcompanymanagement.Activities;
 
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,6 +19,7 @@ public class DriverBaseActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.driver_menu, menu);
+        this.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.BLACK));
         return true;
     }
 

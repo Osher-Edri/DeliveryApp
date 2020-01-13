@@ -6,17 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
-    tools:context=".Activities.AddWorkerActivity">
+    tools:context=".Activities.AddWorkerActivity"
+    android:background="@drawable/background_colour">
 
 
 
     <LinearLayout
         android:orientation="vertical"
-        android:background="@android:color/white"
         android:layout_margin="16dp"
         android:padding="16dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_colour">
 
 
         <com.rengwuxian.materialedittext.MaterialEditText
@@ -24,35 +25,47 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:hint="First Name"/>
+            android:hint="First Name"
+            android:textColorHint="@color/my_white"
+            app:met_textColor="@color/my_white"
+            app:met_textColorHint="@color/my_white"/>
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/addWorker_lastName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:hint="Last Name"/>
+            android:hint="Last Name"
+            app:met_textColor="@color/my_white"
+            app:met_textColorHint="@color/my_white"/>
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/addWorker_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            app:met_textColor="@color/my_white"
+            app:met_textColorHint="@color/my_white"/>
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/addWorker_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            app:met_textColor="@color/my_white"
+            app:met_textColorHint="@color/my_white"
+            />
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/addWorker_phoneNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:hint="Phone Number"/>
+            android:hint="Phone Number"
+            app:met_textColor="@color/my_white"
+            app:met_textColorHint="@color/my_white"/>
         <Spinner
             android:id="@+id/addWorker_permission"
             android:layout_width="match_parent"
@@ -65,12 +78,12 @@
     <Button
         android:id="@+id/addWorker_btn"
         android:layout_margin="16dp"
-        android:background="#AFAFAF"
+        android:background="@drawable/button_capsule"
         android:text="Register"
         android:textSize="20sp"
-        android:textColor="@android:color/white"
+        android:textColor="@color/my_blue"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
     <ProgressBar
         android:id="@+id/addWorker_progressBar"

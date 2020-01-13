@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     app:cardCornerRadius="12dp"
     android:layout_margin="10dp"
-    android:elevation="19dp">
+    android:elevation="19dp"
+    android:background="@drawable/background_colour">
 
 
 
@@ -19,7 +20,7 @@
         android:layout_weight="33.3"
         android:padding="15dp"
         android:textSize="15dp"
-        android:textColor="@android:color/black"
+        android:textColor="@color/my_white"
         android:text="XXX"
         android:gravity="center"/>
 
@@ -31,7 +32,7 @@
         android:gravity="center"
         android:padding="15dp"
         android:text="XXX"
-        android:textColor="@android:color/black"
+        android:textColor="@color/my_white"
         android:textSize="15dp" />
 
     <Spinner

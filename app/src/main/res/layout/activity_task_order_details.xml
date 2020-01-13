@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:elevation="19dp"
+    android:orientation="vertical"
+    android:padding="15dp"
+    app:cardCornerRadius="12dp"
+    tools:context=".Activities.LoginActivity"
+    android:background="@drawable/background_colour">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/text_contact_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_weight="50"
+            android:gravity="left"
+            android:text="Contact Name: "
+            android:textSize="15sp"
+            android:textColor="@color/my_white"/>
+
+        <TextView
+            android:id="@+id/edt_fullName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_weight="50"
+            android:gravity="left"
+            android:text="FullName"
+            android:textSize="15sp"
+            android:textColor="@color/my_white"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:id="@+id/txt_phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_weight="50"
+            android:gravity="left"
+            android:text="Phone Number: "
+            android:textSize="15sp"
+            android:textColor="@color/my_white"/>
+
+        <TextView
+            android:id="@+id/edt_phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_weight="50"
+            android:gravity="left"
+            android:text="PhoneNuber"
+            android:textSize="15sp"
+            android:textColor="@color/my_white"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:id="@+id/txt_origin_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_weight="50"
+            android:gravity="left"
+            android:text="Origin Address: "
+            android:textSize="15sp"
+            android:textColor="@color/my_white"/>
+
+        <TextView
+            android:id="@+id/edt_origin_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_weight="50"
+            android:gravity="left"
+            android:text="OriginAddress"
+            android:textSize="15sp"
+            android:textColor="@color/my_white"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:id="@+id/txt_destination_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_weight="50"
+            android:gravity="left"
+            android:text="Destination Address: "
+            android:textColor="@color/my_white"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/edt_destination_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_weight="50"
+            android:gravity="left"
+            android:text="DestinationAddress"
+            android:textSize="15sp"
+            android:textColor="@color/my_white"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:id="@+id/txt_transport_day"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_weight="50"
+            android:gravity="left"
+            android:text="Transport Date : "
+            android:textColor="@color/my_white"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/edt_transport_day"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_weight="50"
+            android:gravity="left"
+            android:text="TransportDate"
+            android:textSize="15sp"
+            android:textColor="@color/my_white"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:id="@+id/txt_transport_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_weight="50"
+            android:gravity="left"
+            android:text="Transport Description : "
+            android:textColor="@color/my_white"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/edt_transport_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_weight="50"
+            android:gravity="left"
+            android:text="TransportDescription"
+            android:textSize="15sp"
+            android:textColor="@color/my_white"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:id="@+id/txt_status_order"
+            android:layout_width="207dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_weight="50"
+            android:gravity="left"
+            android:text="Status : "
+            android:textSize="15sp"
+            android:textColor="@color/my_white"/>
+
+        <RadioGroup
+            android:id="@+id/radio_group_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            >
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radio_open"
+                android:text="open"
+                android:textColor="@color/my_white"
+                android:buttonTint="@color/my_white"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radio_problem"
+                android:text="problem"
+                android:textColor="@color/my_white"
+                android:buttonTint="@color/my_white"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radio_close"
+                android:text="close"
+                android:textColor="@color/my_white"
+                android:buttonTint="@color/my_white" />
+
+
+        </RadioGroup>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:id="@+id/txt_note_task"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_weight="50"
+            android:gravity="left"
+            android:text="Note : "
+            android:textSize="15sp"
+            android:textColor="@color/my_white"/>
+
+        <EditText
+            android:id="@+id/edt_note_task"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_weight="50"
+            android:background= "@color/my_white"
+            android:gravity="left"
+            android:hint="Insert note"
+            android:lines="5"
+            android:minLines="3"
+            android:textSize="15sp"
+            android:textColor="@color/my_blue"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_submit_status"
+        android:layout_width="137dp"
+        android:layout_height="60dp"
+        android:background="@drawable/button_capsule"
+        android:text="SAVE"
+        android:textColor="@color/my_blue"
+        android:textSize="20sp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+        <ImageView
+            android:id="@+id/phone_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_phone"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

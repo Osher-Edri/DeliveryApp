@@ -5,23 +5,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activities.ManagerMainActivity">
+    tools:context=".Activities.ManagerMainActivity"
+    android:background="@drawable/background_colour">
 
 
     <Button
         android:id="@+id/btn_select_driver"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="30dp"
+        android:drawableLeft="@drawable/ic_select_driver"
+        android:background="@drawable/button_capsule"
         android:onClick="selectTaskDriver"
-        android:text="@string/selectTaskDriver" />
+        android:gravity="center_vertical"
+        android:paddingStart="70dp"
+        android:layout_weight="1"
+        android:text="@string/selectTaskDriver"
+        android:textColor="@color/my_blue"/>
 
     <Button
         android:id="@+id/btn_failed_tasks"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="30dp"
+        android:background="@drawable/button_capsule"
+        android:drawableLeft="@drawable/ic_failed_tasks"
+        android:textColor="@color/my_blue"
         android:onClick="showFailedTasks"
+        android:gravity="center_vertical"
+        android:paddingStart="70dp"
         android:text="@string/failed_tasks" />
 
     <Button
@@ -29,8 +44,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="30dp"
+        android:background="@drawable/button_capsule"
+        android:drawableLeft="@drawable/ic_completed_tasks"
         android:onClick="showCompletedTasks"
-        android:text="@string/completed_tasks" />
+        android:gravity="center_vertical"
+        android:paddingStart="70dp"
+        android:text="@string/completed_tasks"
+        android:textColor="@color/my_blue"/>
 
 
 

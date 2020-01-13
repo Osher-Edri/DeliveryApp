@@ -83,17 +83,17 @@ public class DriverTasksListActivity extends DriverBaseActivity {
 
             for (DataSnapshot ds : dataSnapshot.getChildren()) {
                 TaskData task = ds.getValue(TaskData.class);
-
-                if(driverData.getId().equals(task.getDriver())) {
-                    if (filter_.equals("today")) {
+                if (!task.getStatus().equals("close") && !task.getStatus().equals("problem")) {
+                    if (driverData.getId().equals(task.getDriver())) {
+                        if (filter_.equals("today")) {
                             int day = now.getDayOfMonth();
                             int month = now.getMonthValue();
                             int year = now.getYear();
-                            if(task.getTaskMonth() == month && task.getTaskYear() == year && task.getTaskDay() == day)
+                            if (task.getTaskMonth() == month && task.getTaskYear() == year && task.getTaskDay() == day)
                                 tasks.add(task);
-                    }
-                    else{
-                        tasks.add(task);
+                        } else {
+                            tasks.add(task);
+                        }
                     }
                 }
             }

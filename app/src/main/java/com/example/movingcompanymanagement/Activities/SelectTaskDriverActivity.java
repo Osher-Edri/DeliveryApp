@@ -49,6 +49,7 @@ public class SelectTaskDriverActivity extends MangerBaseActivity {
     FirebaseAuth firebaseAuth;
     ArrayList<String> driverNames = new ArrayList<>();
     ArrayList<DriverNameAndIDHolder> nameAndIDList;
+    //UserData managerUser;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,7 @@ public class SelectTaskDriverActivity extends MangerBaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
         filter_ = (String) intent.getSerializableExtra("filter");
+        mangerUser = (UserData) intent.getSerializableExtra("current user");
         recyclerView = findViewById(R.id.manager_task_list_recycler);
         recyclerView.setHasFixedSize(true);
         firebaseAuth = FirebaseAuth.getInstance();
